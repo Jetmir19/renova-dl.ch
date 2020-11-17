@@ -1,0 +1,108 @@
+User Access Token:
+EAADUWHxOZBJwBAEOZAPisp4vik8nD9LvcSub5OuyoEcciFeID55zmZBzt63PCIEnJZATarz4IO4K9aYB9q88ux0v7KWIOYUHZAjqk59oZCWfobS98K9F6wrSwjvTMRGcM7CXe6GvJ6p4j1pw1STh0MpHw9dSafSzFZBQcGZB3XZCHCGeoHq9DaZAk0dfQf1mD0h7hZBoVmTIGJRBcPSAKkhjTKgOYEeNZBFH6kosJaN59WYWQAZDZD
+
+Extended Token:
+EAADUWHxOZBJwBAD3xd3l3RI3KliU8qPsxK8omTZCuCb9kUBS68bc4acA5nngEK7BRZCHnOAC0mMuXQmBIZA5yzv7nQkQAO1szUiDNIofZCgD02y03FOaOxVZB4O5ZBKrZCI7r303oyAORNaLh3MSlAVfERxqbtAVXJC0cf5rkPFKoAZDZD
+
+App ID:
+233476507760796
+	
+App Secret:
+6180c252b7bda32c7bbeecfdd363eca3
+
+
+// user Information
+{
+  "id": "937087900045021",
+  "name": "Inter-trans Tetovo"
+}
+
+// Getting User with access_token (use width height fields for more specific widths)
+https://graph.facebook.com/v6.0/me/photos?fields=images,name,link,created_time&type=uploaded&limit=12',
+        'EAADUWHxOZBJwBAD3xd3l3RI3KliU8qPsxK8omTZCuCb9kUBS68bc4acA5nngEK7BRZCHnOAC0mMuXQmBIZA5yzv7nQkQAO1szUiDNIofZCgD02y03FOaOxVZB4O5ZBKrZCI7r303oyAORNaLh3MSlAVfERxqbtAVXJC0cf5rkPFKoAZDZD
+
+
+// Getting Photos direct with access_token
+"https://graph.facebook.com/me?fields=photos{picture,link}&access_token=EAAHj0RUZB4T8BAK1s1GszW9G4KeelEXkKWmVBKPuUZC7Tz27hYCRyUNGeZBRfH8orlGWSqXL1Hhk7QNnCEhQjO8xSjznzcqCStMKZADsolRZAf4yQ2zbuMJosmnMxVCVdqgjPDrRFfCvkOteqb5ymNsCu9czlMloZD"
+
+
+or .....
+
+// Getting Photos with userid and with heights and widths
+"https://graph.facebook.com/10221778947932618?fields=photos{link,images,picture}&access_token=EAAHj0RUZB4T8BAK1s1GszW9G4KeelEXkKWmVBKPuUZC7Tz27hYCRyUNGeZBRfH8orlGWSqXL1Hhk7QNnCEhQjO8xSjznzcqCStMKZADsolRZAf4yQ2zbuMJosmnMxVCVdqgjPDrRFfCvkOteqb5ymNsCu9czlMloZD"
+
+
+
+
+
+
+
+
+
+
+////////////////// Json looks like this
+
+
+{
+  "data": [
+    {
+      "images": [
+        {
+          "height": 1794,
+          "source": "https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-9/72330617_788753248211821_8231338040061067264_o.jpg?_nc_cat=106&_nc_sid=110474&_nc_ohc=qHNpTleAxxAAX--GDvu&_nc_ht=scontent-vie1-1.xx&oh=8adb991e3c215555e3e0b5d11ee64099&oe=5EBBCC50",
+          "width": 1080
+        },
+        {
+          "height": 1595,
+          "source": "https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-9/p960x960/72330617_788753248211821_8231338040061067264_o.jpg?_nc_cat=106&_nc_sid=110474&_nc_ohc=qHNpTleAxxAAX--GDvu&_nc_ht=scontent-vie1-1.xx&_nc_tp=6&oh=08248e64634533ef6c0128a26e925953&oe=5EBE8220",
+          "width": 960
+        },
+        {
+          "height": 1196,
+          "source": "https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-9/p720x720/72330617_788753248211821_8231338040061067264_o.jpg?_nc_cat=106&_nc_sid=110474&_nc_ohc=qHNpTleAxxAAX--GDvu&_nc_ht=scontent-vie1-1.xx&_nc_tp=6&oh=f7d1df14b7e9c720f6f5be5f6540f67f&oe=5EBC513F",
+          "width": 720
+        },
+        {
+          "height": 997,
+          "source": "https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-0/p600x600/72330617_788753248211821_8231338040061067264_o.jpg?_nc_cat=106&_nc_sid=110474&_nc_ohc=qHNpTleAxxAAX--GDvu&_nc_ht=scontent-vie1-1.xx&_nc_tp=6&oh=b4ef483118ae6f438eb8a2fa14b34afc&oe=5EBBA115",
+          "width": 600
+        },
+        {
+          "height": 797,
+          "source": "https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-0/p480x480/72330617_788753248211821_8231338040061067264_o.jpg?_nc_cat=106&_nc_sid=110474&_nc_ohc=qHNpTleAxxAAX--GDvu&_nc_ht=scontent-vie1-1.xx&_nc_tp=6&oh=578ebb5f7ccead198b00c02553f1c342&oe=5EBB7875",
+          "width": 480
+        },
+        {
+          "height": 532,
+          "source": "https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-0/p320x320/72330617_788753248211821_8231338040061067264_o.jpg?_nc_cat=106&_nc_sid=110474&_nc_ohc=qHNpTleAxxAAX--GDvu&_nc_ht=scontent-vie1-1.xx&_nc_tp=6&oh=36aa1a151d50b39fd1ad97560bfea309&oe=5EBB4A2F",
+          "width": 320
+        },
+        {
+          "height": 540,
+          "source": "https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-0/p180x540/72330617_788753248211821_8231338040061067264_o.jpg?_nc_cat=106&_nc_sid=110474&_nc_ohc=qHNpTleAxxAAX--GDvu&_nc_ht=scontent-vie1-1.xx&_nc_tp=6&oh=5dacc1a31eaa7f82fe7da5377732f212&oe=5EBD8394",
+          "width": 325
+        },
+        {
+          "height": 216,
+          "source": "https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-0/p130x130/72330617_788753248211821_8231338040061067264_o.jpg?_nc_cat=106&_nc_sid=110474&_nc_ohc=qHNpTleAxxAAX--GDvu&_nc_ht=scontent-vie1-1.xx&_nc_tp=6&oh=10d8b59b68886d6cd5dfee86731cd523&oe=5EBEB342",
+          "width": 130
+        },
+        {
+          "height": 225,
+          "source": "https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-0/p75x225/72330617_788753248211821_8231338040061067264_o.jpg?_nc_cat=106&_nc_sid=110474&_nc_ohc=qHNpTleAxxAAX--GDvu&_nc_ht=scontent-vie1-1.xx&_nc_tp=6&oh=acaddfb2d7a2ba2438bb717834ceafca&oe=5EBC5636",
+          "width": 135
+        }
+      ],
+      "link": "https://www.facebook.com/photo.php?fbid=788753244878488&set=a.120690705018082&type=3",
+      "created_time": "2019-10-09T06:47:53+0000",
+      "id": "788753244878488"
+    }
+  ],
+  "paging": {
+    "cursors": {
+      "before": "QVFIUmxCdnFITkEtRUF0LVZATQmEzcmt5YTNZAS3AtZAzlSaHJWaFRsaHhoVk1sNERQX3pDWDdvOGZAJVXFZASmRUengzT3NsOElyUzJBX1pkZA2ZAmTklIYWVYM0FR",
+      "after": "QVFIUmxCdnFITkEtRUF0LVZATQmEzcmt5YTNZAS3AtZAzlSaHJWaFRsaHhoVk1sNERQX3pDWDdvOGZAJVXFZASmRUengzT3NsOElyUzJBX1pkZA2ZAmTklIYWVYM0FR"
+    },
+    "next": "https://graph.facebook.com/v6.0/937087900045021/photos?access_token=EAADUWHxOZBJwBAD3xd3l3RI3KliU8qPsxK8omTZCuCb9kUBS68bc4acA5nngEK7BRZCHnOAC0mMuXQmBIZA5yzv7nQkQAO1szUiDNIofZCgD02y03FOaOxVZB4O5ZBKrZCI7r303oyAORNaLh3MSlAVfERxqbtAVXJC0cf5rkPFKoAZDZD&pretty=0&fields=images%2Cname%2Clink%2Ccreated_time&type=uploaded&limit=1&after=QVFIUmxCdnFITkEtRUF0LVZATQmEzcmt5YTNZAS3AtZAzlSaHJWaFRsaHhoVk1sNERQX3pDWDdvOGZAJVXFZASmRUengzT3NsOElyUzJBX1pkZA2ZAmTklIYWVYM0FR"
+  }
+}
