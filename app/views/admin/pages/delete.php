@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (isset($_POST["dbDelete"])) {
     $ok = true;
@@ -7,7 +7,7 @@ if (isset($_POST["dbDelete"])) {
 
     if ($ok === true) {
         $sql = "DELETE FROM pages
-                WHERE pageID=:pageID";
+        WHERE pageID=:pageID";
 
         $stmt = $db->prepare($sql);
         $stmt->bindParam(":pageID", $pageID);

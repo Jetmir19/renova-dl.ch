@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (isset($_POST["dbEdit"])) {
     $ok = true;
@@ -21,8 +21,7 @@ if (isset($_POST["dbEdit"])) {
         $sql = "UPDATE category SET
 		categoryName=:categoryName, 
 		categoryDescription=:categoryDescription
-		WHERE categoryID=:categoryID
-		";
+		WHERE categoryID=:categoryID";
 
         $stmt = $db->prepare($sql);
         $stmt->bindParam(":categoryID", $categoryID);

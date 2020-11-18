@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (isset($_POST["dbInsert"])) {
     $ok = true;
@@ -29,8 +29,8 @@ if (isset($_POST["dbInsert"])) {
 			:categoryName,
 			:categoryUserID,
 			:categoryDescription
-		)
-		";
+        )";
+
         $stmt = $db->prepare($sql);
         $stmt->bindParam(":categoryName", $categoryName);
         $stmt->bindParam(":categoryUserID", $categoryUserID);

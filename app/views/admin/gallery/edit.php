@@ -34,8 +34,7 @@ if (isset($_POST["dbEdit"])) {
     // 	app_secret=:app_secret,
     // 	userID=:userID,
     // 	token=:token        
-    // 	WHERE id=:tokenID
-    // 	";
+    // 	WHERE id=:tokenID";
 
     //     $stmt = $db->prepare($sql);
     //     $stmt->bindParam(":tokenID", $tokenID);

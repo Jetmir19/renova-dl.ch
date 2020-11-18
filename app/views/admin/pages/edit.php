@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (isset($_POST["dbEdit"])) {
     $ok = true;
@@ -38,8 +38,7 @@ if (isset($_POST["dbEdit"])) {
                 pageLanguage=:pageLanguage, 
                 pageContent=:pageContent,
                 pageStatus=:pageStatus
-                WHERE pageID=:pageID
-                ";
+                WHERE pageID=:pageID";
 
         $stmt = $db->prepare($sql);
         $stmt->bindParam(":pageID", $pageID);

@@ -17,7 +17,8 @@ if (isset($_POST["dbEdit"])) {
         $output .= "The email you entered was not valid";
     }
     // Select all emails expect the existing user email
-    $sql = "SELECT userEmail FROM user WHERE userID != :userID";
+    $sql = "SELECT userEmail FROM user 
+    WHERE userID != :userID";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(":userID", $userID);
     $stmt->execute();
@@ -59,8 +60,7 @@ if (isset($_POST["dbEdit"])) {
                 userEmail=:userEmail,
                 userRole=:userRole,
                 userPassword=:userPassword
-                WHERE userID=:userID
-                ";
+                WHERE userID=:userID";
 
         $stmt = $db->prepare($sql);
         $stmt->bindParam(":userID", $userID);

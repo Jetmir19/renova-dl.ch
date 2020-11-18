@@ -36,7 +36,7 @@ if (isset($_GET['action'])) {
 
                 <div class="form-group text-left">
                     <label for="categoryName">User</label>
-                    <input type="text" class="form-control" id="userName" name="userName" placeholder="Name" value="<?php echo $userName; ?>" readonly>
+                    <input type="text" class="form-control" id="userName" name="userName" placeholder="Name" value="<?php echo $userName ?? $_SESSION['userName']; ?>" readonly>
                 </div>
 
                 <div class="form-group text-left">

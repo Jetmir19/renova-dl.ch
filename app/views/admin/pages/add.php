@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (isset($_POST["dbInsert"])) {
     $ok = true;
@@ -52,8 +52,7 @@ if (isset($_POST["dbInsert"])) {
                 :pageTitle,
                 :pageLanguage, 
                 :pageContent
-            )
-            ";
+            )";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(":pageName", $pageName);
         $stmt->bindParam(":pageUserID", $pageUserID);
