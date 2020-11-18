@@ -9,7 +9,7 @@ if (isset($_GET['action'])) {
             <div id="categories_result"></div>
 
             <?php
-            ############# ADD START ###########################
+            ########################## ADD START ###########################
             if ($_GET['action'] == 'add') {
             ?>
                 <h5>Add new Category</h5>
@@ -33,9 +33,9 @@ if (isset($_GET['action'])) {
                 </div>
             <?php
             }
-            ############# ADD END #############################
+            ########################## ADD END #############################
 
-            ############# EDIT START ##########################
+            ########################## EDIT START ##########################
             if ($_GET['action'] == 'edit') {
                 echo "<h5>Category edit</h5><span>ID: $_GET[id]</span>";
                 $row = getCategoryById($_GET['id']);
@@ -63,9 +63,9 @@ if (isset($_GET['action'])) {
                 </div>
             <?php
             }
-            ############# EDIT END ############################
+            ########################## EDIT END ############################
 
-            ############# DELETE START ########################
+            ########################## DELETE START ########################
             if ($_GET['action'] == 'delete') {
             ?>
                 <h5>Category delete</h5>
@@ -78,7 +78,7 @@ if (isset($_GET['action'])) {
                 </div>
             <?php
             }
-            ############# DELETE END ##########################
+            ########################## DELETE END ##########################
             ?>
 
         </form>

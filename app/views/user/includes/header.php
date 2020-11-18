@@ -14,7 +14,7 @@
 	<title>
 		<?php
 		// Getting $data array (title) from the viewFunctions or the default string
-		echo $title ?? "Renova Sàrl";
+		echo $title ?? "Renova DL";
 		?>
 	</title>
 	<!-- Font Awesome Icons -->
@@ -80,24 +80,24 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<?php
-								$language = $_SESSION['language'] ?? "AL";
+								$language = $_SESSION['language'] ?? "FR";
 								switch ($language) {
-									case 'EN':
-										echo '<img src="' . APPURL . '/public/img/flags/en.gif" alt=""> ENG';
+									case 'FR':
+										echo '<img src="' . APPURL . '/public/img/flags/fr.gif" alt=""> FRANÇAIS';
 										break;
-									case 'AL':
-										echo '<img src="' . APPURL . '/public/img/flags/al.gif" alt=""> SHQIP';
+									case 'DE':
+										echo '<img src="' . APPURL . '/public/img/flags/de.gif" alt=""> DEUTSCH';
 										break;
 									default:
-										echo '<img src="' . APPURL . '/public/img/flags/al.gif" alt=""> SHQIP';
+										echo '<img src="' . APPURL . '/public/img/flags/fr.gif" alt=""> FRANÇAIS';
 										break;
 								}
 								?>
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" data-lang="AL" href="#"><img src="<?php echo APPURL; ?>/public/img/flags/al.gif" alt=""> SHQIP</a>
+								<a class="dropdown-item" data-lang="FR" href="#"><img src="<?php echo APPURL; ?>/public/img/flags/fr.gif" alt=""> FRANÇAIS</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" data-lang="EN" href="#"><img src="<?php echo APPURL; ?>/public/img/flags/en.gif" alt=""> ENG</a>
+								<a class="dropdown-item" data-lang="DE" href="#"><img src="<?php echo APPURL; ?>/public/img/flags/de.gif" alt=""> DEUTSCH</a>
 							</div>
 						</li>
 					</ul>

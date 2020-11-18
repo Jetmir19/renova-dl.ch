@@ -31,6 +31,7 @@ if (!(isset($_GET['action']))) {
             <h3>Users</h3>
         </div>
     </div>
+
     <hr class="border-top">
 
     <div class="alert alert-info" role="alert">

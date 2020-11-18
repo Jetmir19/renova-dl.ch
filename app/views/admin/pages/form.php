@@ -3,36 +3,71 @@
 if (isset($_GET['action'])) {
 ?>
     <div class="container bg-white p-3" id="pageSuccess">
-        <!-- Dinamic Title -->
-        <?php if ($_GET['action'] == 'add') : ?>
-            <h5>Add new Page</h5>
-        <?php endif; ?>
-
-        <?php if ($_GET['action'] == 'delete') : ?>
-            <h5>Page delete</h5>
-            <h5 class="mb-5 mt-2">Are you sure?</h5>
-        <?php endif; ?>
-
-        <?php
-        if ($_GET['action'] == 'edit') {
-            echo "<h5>Seite Bearbeiten</h5><span>ID: " . $_GET['id'] . "</span>";
-            $row = getPageById($_GET['id']);
-            $pageName = $row["pageName"];
-            $pageCategoryID = $row["categoryID"];
-            $categoryName = $row["categoryName"];
-            $pageTitle = $row["pageTitle"];
-            $pageLanguage = $row["pageLanguage"];
-            $pageContent = $row["pageContent"];
-            $pageStatus = $row["pageStatus"];
-        }
-        ?>
-
         <form id="formPages" class="form-pages" action="#" method="post" enctype="multipart/form-data">
+
             <!-- Output Results -->
             <div id="pages_result"></div>
 
-            <!-- If delete is called START -->
-            <?php if ($_GET['action'] != 'delete') : ?>
+            <?php
+            ########################## ADD START ###########################
+            if ($_GET['action'] == 'add') {
+            ?>
+                <h5>Add new Page</h5>
+                <div class="form-group text-left">
+                    <label for="pageName">Page Name</label>
+                    <input type="text" class="form-control" id="pageName" name="pageName" placeholder="Name">
+                </div>
+                <div class="form-group text-left">
+                    <label for="pageName">Title</label>
+                    <input type="text" class="form-control" rows="5" id="pageTitle" name="pageTitle" placeholder="Titel">
+                </div>
+                <div class="form-group text-left">
+                    <label for='pageLanguage'>Language</label>
+                    <select id='pageLanguage' name='pageLanguage' class='form-control'>
+                        <option class='select_hide' disabled selected>Select Language</option>
+                        <option value='EN'>EN</option>
+                        <option value='DE'>DE</option>
+                        <option value='FR'>FR</option>
+                    </select>
+                </div>
+                <div class="form-group text-left">
+                    <?php
+                    echo "<label for='pageCategoryID'>Category</label>";
+                    echo "<select id='pageCategoryID' name='pageCategoryID' class='form-control'>";
+                    echo "<option class='select_hide' disabled selected>Choose Category</option>";
+                    $categories = getCategories();
+                    foreach ($categories as $cat) {
+                        echo "<option value='$cat[categoryID]'>$cat[categoryName]</option>";
+                    }
+                    echo "</select>";
+                    ?>
+                </div>
+                <div class="form-group text-left">
+                    <label for="pageName">Content (HTML & PHP)</label>
+                    <textarea class="form-control" rows="15" id="pageContent" name="pageContent" placeholder="Content"></textarea>
+                </div>
+                <div class="form-group">
+                    <!-- Input hidden below will be posted with the form -->
+                    <input type="hidden" id="dbInsert" name="dbInsert" value="dbInsert">
+                    <input type="submit" id="btnAddpages" name="btnAddpages" class="btn btn-primary btn-lg btn-block" value="Save" />
+                    <a href="<?php echo APPURL . "/admin/pages"; ?>" type="button" class="btn btn-secondary btn-lg btn-block">Cancel</a>
+                </div>
+            <?php
+            }
+            ########################## ADD END #############################
+
+            ########################## EDIT START ##########################
+            if ($_GET['action'] == 'edit') {
+                echo "<h5>Seite Bearbeiten</h5><span>ID: $_GET[id]</span>";
+                $row = getPageById($_GET['id']);
+                $pageName = $row["pageName"];
+                $pageCategoryID = $row["categoryID"];
+                $categoryName = $row["categoryName"];
+                $pageTitle = $row["pageTitle"];
+                $pageLanguage = $row["pageLanguage"];
+                $pageContent = $row["pageContent"];
+                $pageStatus = $row["pageStatus"];
+            ?>
                 <div class="form-group text-left">
                     <label for="pageName">Page Name</label>
                     <input type="text" class="form-control" id="pageName" name="pageName" placeholder="Name" value="<?php echo $pageName; ?>">
@@ -46,7 +81,7 @@ if (isset($_GET['action'])) {
                     echo "<label for='pageLanguage'>Language</label>";
                     echo "<select id='pageLanguage' name='pageLanguage' class='form-control'>";
                     echo "<option class='select_hide' disabled selected>Select Language</option>";
-                    $pageLangArray = ['AL', 'MK', 'EN'];
+                    $pageLangArray = ['EN', 'DE', 'FR'];
                     foreach ($pageLangArray as $lang) {
                         if ($lang == $pageLanguage) {
                             $selected = "selected";
@@ -76,47 +111,39 @@ if (isset($_GET['action'])) {
                     ?>
                 </div>
                 <div class="form-group text-left">
-                    <label for="pageName">Inhalt</label>
-                    <textarea class="form-control" rows="15" id="pageContent" name="pageContent" placeholder="Inhalt"><?php echo $pageContent; ?></textarea>
+                    <label for="pageName">Content (HTML & PHP)</label>
+                    <textarea class="form-control" rows="15" id="pageContent" name="pageContent" placeholder="Content"><?php echo $pageContent; ?></textarea>
                 </div>
                 <!-- pages Status goes below... -->
-                <?php if ($_GET['action'] == 'edit') : ?>
-                    <div class="custom-control custom-checkbox mb-3">
-                        <input type="checkbox" class="custom-control-input" id="pageStatus" name="pageStatus" <?php echo $pageStatus == 1 ? " checked" : "" ?>>
-                        <label class="custom-control-label" for="pageStatus">Seitenstatus (markiert ist aktiv oder 1)</label>
-                    </div>
-                <?php endif; ?>
-
-                <div class="form-group">
-
-                    <!-- Insert Button -->
-                    <?php if ($_GET['action'] == 'add') : ?>
-                        <!-- Input hidden below will be posted with the form -->
-                        <input type="hidden" id="dbInsert" name="dbInsert" value="dbInsert">
-                        <input type="submit" id="btnAddpages" name="btnAddpages" class="btn btn-primary btn-lg btn-block" value="Save" />
-                        <a href="<?php echo APPURL . "/admin/pages"; ?>" type="button" class="btn btn-secondary btn-lg btn-block">Cancel</a>
-                    <?php endif; ?>
-
-                    <!-- Edit Button -->
-                    <?php if ($_GET['action'] == 'edit') : ?>
-                        <!-- pageID senden -->
-                        <input type="hidden" id="dbEdit" name="dbEdit" value="<?php echo $_GET['id']; ?>">
-                        <input type="submit" id="btnEditpages" name="btnEditpages" class="btn btn-primary btn-lg btn-block" value="Save" />
-                        <a href="<?php echo APPURL . "/admin/pages"; ?>" type="button" class="btn btn-secondary btn-lg btn-block">Cancel</a>
-                    <?php endif; ?>
-
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="pageStatus" name="pageStatus" <?php echo $pageStatus == 1 ? " checked" : "" ?>>
+                    <label class="custom-control-label" for="pageStatus">Seitenstatus (markiert ist aktiv oder 1)</label>
                 </div>
-            <?php endif; ?>
-            <!-- If delete is called END -->
+                <div class="form-group">
+                    <!-- pageID senden -->
+                    <input type="hidden" id="dbEdit" name="dbEdit" value="<?php echo $_GET['id']; ?>">
+                    <input type="submit" id="btnEditpages" name="btnEditpages" class="btn btn-primary btn-lg btn-block" value="Save" />
+                    <a href="<?php echo APPURL . "/admin/pages"; ?>" type="button" class="btn btn-secondary btn-lg btn-block">Cancel</a>
+                </div>
+            <?php
+            }
+            ########################## EDIT END ############################
 
-            <?php if ($_GET['action'] == 'delete') : ?>
+            ########################## DELETE START ########################
+            if ($_GET['action'] == 'delete') {
+            ?>
+                <h5>Page delete</h5>
+                <h5 class="mb-5 mt-2">Are you sure?</h5>
                 <div class="form-group">
                     <!-- Delete Button and pageID send -->
                     <input type="hidden" id="dbDelete" name="dbDelete" value="<?php echo $_GET['id']; ?>">
                     <input type="submit" id="btnDeletepages" name="btnDeletepages" class="btn btn-danger btn-lg" value="Delete" />
                     <a href="<?php echo APPURL . "/admin/pages"; ?>" type="button" class="btn btn-secondary btn-lg">Cancel</a>
                 </div>
-            <?php endif; ?>
+            <?php
+            }
+            ########################## DELETE END ##########################
+            ?>
 
         </form>
     </div>

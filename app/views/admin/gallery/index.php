@@ -109,8 +109,6 @@ if (!isset($_GET['action'])) {
                 <!-- MySQL END -->
             </tbody>
         </table>
-        <!-- Refresh button -> Ajax response Alert -->
-        <div id="refresh-alert"></div>
     </div>
 
 <?php

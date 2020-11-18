@@ -12,7 +12,7 @@ function index($url, $url2 = '', $url3 = '')
 
     if (file_exists($FileFullPath)) {
         // Passing Title to the view
-        $data = ['title' => 'Renova Sàrl'];
+        $data = ['title' => 'Renova DL'];
         // extract the array so we can use 'title' as variable $title in the view
         extract($data);
         require_once $FileFullPath;
@@ -34,7 +34,7 @@ function gallery($url, $url2, $url3 = '')
 
     if (file_exists($FileFullPath)) {
         // Passing Title to the view
-        $data = ['title' => 'Renova Sàrl - Gallery'];
+        $data = ['title' => 'Renova DL - Gallery'];
         // Get Gallery Photos from database and pass to the view
         $data['gallery'] = getGalleryPhotosFromDB(55);
         // extract the array so we can use 'title' as variable $title in the view
@@ -58,7 +58,7 @@ function about($url, $url2, $url3 = '')
 
     if (file_exists($FileFullPath)) {
         // Passing Title to the view
-        $data = ['title' => 'Renova Sàrl - About'];
+        $data = ['title' => 'Renova DL - About'];
         // extract the array so we can use 'title' as variable $title in the view
         extract($data);
         require_once $FileFullPath;
@@ -80,7 +80,7 @@ function contact($url, $url2, $url3 = '')
 
     if (file_exists($FileFullPath)) {
         // Passing Title to the view
-        $data = ['title' => 'Renova Sàrl - Contact'];
+        $data = ['title' => 'Renova DL - Contact'];
         // extract the array so we can use 'title' as variable $title in the view
         extract($data);
         require_once $FileFullPath;

@@ -12,16 +12,16 @@ if (isset($_POST['lang']))
     $lang = htmlspecialchars($_POST['lang']);
 
     switch ($lang) {
-        case 'AL':
-            $_SESSION['language'] = 'AL';
+        case 'FR':
+            $_SESSION['language'] = 'FR';
             session_regenerate_id(true);
             break;
-        case 'EN':
-            $_SESSION['language'] = 'EN';
+        case 'DE':
+            $_SESSION['language'] = 'DE';
             session_regenerate_id(true);
             break;
         default:
-            $_SESSION['language'] = 'AL';
+            $_SESSION['language'] = 'FR';
             session_regenerate_id(true);
             break;
     }
