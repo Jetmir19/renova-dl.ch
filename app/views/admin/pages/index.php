@@ -3,7 +3,7 @@
 checkUserLoggedIn();
 
 // Database connection
-require_once DB_PATH . "/db.php";
+require_once DB_PATH . "/connect.php";
 // global variable
 global $db;
 

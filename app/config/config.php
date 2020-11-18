@@ -11,7 +11,7 @@ define('DEFAULT_LANGUAGE', 'AL');
 
 /* DB Params */
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'renova_sarl_db');
+define('DB_NAME', 'renova_dl_db');
 define('DB_CHARSET', 'utf8');
 define('DB_USER', 'root');
 define('DB_PASS', '123456');
@@ -24,10 +24,10 @@ defined("CONTACT_FORM_EMAIL")
 
 /* Path Constants */
 defined("SITE_NAME")
-    or define("SITE_NAME", 'renova-sarl.ch');
+    or define("SITE_NAME", 'renova-dl.ch');
 
 defined("APPURL")
-    or define("APPURL", "http://localhost/renova-sarl.ch");
+    or define("APPURL", "http://localhost/renova-dl.ch");
 
 defined("APPROOT")
     or define("APPROOT", dirname(dirname(__DIR__)));
@@ -37,6 +37,9 @@ defined("LIBRARY_PATH")
 
 defined("DB_PATH")
     or define("DB_PATH", dirname(__DIR__) . '/database');
+
+defined("MODELS_PATH")
+    or define("MODELS_PATH", dirname(__DIR__) . '/models');
 
 /* VIEWS */
 defined("VIEWS_PATH")

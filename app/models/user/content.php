@@ -1,7 +1,5 @@
 <?php
 
-require_once DB_PATH . "/db.php";
-
 /* Geting the Page content from the Database */
 // -----------------------------------------------------------
 function getContent($pageName, $categoryName, $pageStatus = 1)

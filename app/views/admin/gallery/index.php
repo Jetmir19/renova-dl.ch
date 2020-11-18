@@ -3,7 +3,7 @@
 checkUserLoggedIn();
 
 // Database connection
-require_once DB_PATH . "/db.php";
+require_once DB_PATH . "/connect.php";
 // global variable
 global $db;
 
@@ -11,7 +11,15 @@ $output = "";
 
 
 ############# Edit in DB START #####################
+require_once VIEWS_PATH . "/admin/gallery/add.php";
+############# Edit in DB END #######################
+
+############# Edit in DB START #####################
 require_once VIEWS_PATH . "/admin/gallery/edit.php";
+############# Edit in DB END #######################
+
+############# Edit in DB START #####################
+require_once VIEWS_PATH . "/admin/gallery/delete.php";
 ############# Edit in DB END #######################
 
 
@@ -20,10 +28,12 @@ require_once VIEWS_PATH . "/admin/includes/header.php";
 
 if (!isset($_GET['action'])) {
 ?>
-    <!-- Facebook API Data  -->
     <div class="row align-items-center pt-3">
         <div class="col text-left">
             <h3>Gallery</h3>
+        </div>
+        <div class="col text-right">
+            <a href="?action=add" class="btn btn-success">Create New +</a>
         </div>
     </div>
 
@@ -83,6 +93,9 @@ if (!isset($_GET['action'])) {
                             <td>
                             <a class='btn btn-link' href='?action=edit&id=$row[galleryID]'>
                             <i class='far fa-edit'></i>
+                            </a>
+                            <a class='btn btn-link' href='?action=delete&id=$row[galleryID]'>
+                            <i class='far fa-trash-alt'></i>
                             </a>
                             </td>
                         </tr>";

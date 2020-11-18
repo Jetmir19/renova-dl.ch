@@ -1,7 +1,7 @@
 <?php
 checkUserLoggedIn();
 
-require DB_PATH . "/db.php";
+require DB_PATH . "/connect.php";
 
 require_once VIEWS_PATH . "/admin/includes/header.php";
 

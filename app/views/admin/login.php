@@ -6,7 +6,7 @@ if (isset($_SESSION["userID"])) {
     header("location:" . APPURL . "/admin");
 }
 
-require DB_PATH . "/db.php";
+require DB_PATH . "/connect.php";
 
 $email = "";
 $password = "";

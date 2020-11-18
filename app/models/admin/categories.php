@@ -1,15 +1,15 @@
 <?php
-// Database connection
-require_once DB_PATH . "/db.php";
 
 # ---------------------------------------------------
-function getUsers()
+function getCategories()
 # ---------------------------------------------------
 {
     global $db;
 
-    $sql = "SELECT * FROM user
-    ORDER BY userCreatedAt DESC";
+    $sql = "SELECT * FROM category 
+    INNER JOIN user 
+    ON categoryUserID=userID 
+    ORDER BY categoryDate DESC";
 
     $stmt = $db->query($sql);
 
@@ -23,13 +23,15 @@ function getUsers()
 }
 
 # ---------------------------------------------------
-function getUserById($id)
+function getCategoryById($id)
 # ---------------------------------------------------
 {
     global $db;
 
-    $sql = "SELECT * FROM user 
-    WHERE userID=:id";
+    $sql = "SELECT * FROM category 
+    INNER JOIN user 
+    ON categoryUserID=userID 
+    WHERE categoryID=:id";
 
     $stmt = $db->prepare($sql);
 

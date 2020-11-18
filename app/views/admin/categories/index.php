@@ -3,7 +3,7 @@
 checkUserLoggedIn();
 
 // Database connection
-require_once DB_PATH . "/db.php";
+require_once DB_PATH . "/connect.php";
 // global variable
 global $db;
 
@@ -38,6 +38,7 @@ if (!isset($_GET['action'])) {
             <a href="?action=add" class="btn btn-success">Create New +</a>
         </div>
     </div>
+	
     <hr class="border-top">
 
     <div class="table-responsive-sm">
@@ -91,9 +92,9 @@ if (!isset($_GET['action'])) {
 ############# Categories Home END ######################
 
 
-############# Categories Form START ####################
+############# Gallery Form START #######################
 require_once VIEWS_PATH . "/admin/categories/form.php";
-############# Categories Form END ######################
+############# Gallery Form END #########################
 
 
 require_once VIEWS_PATH . "/admin/includes/footer.php";

@@ -3,49 +3,34 @@
 if (isset($_POST["dbEdit"])) {
     $ok = true;
 
-    // $tokenID = (int) $_POST["dbEdit"];
-    // $app_id = htmlspecialchars(trim($_POST["app_id"]));
-    // $app_secret = htmlspecialchars(trim($_POST["app_secret"]));
-    // $userID = htmlspecialchars(trim($_POST["userID"]));
-    // $token = htmlspecialchars(trim($_POST["token"]));
+    // $categoryID = (int) $_POST["dbEdit"];
+    // $categoryName = htmlspecialchars(trim($_POST["categoryName"]));
+    // $categoryDescription = htmlspecialchars(trim($_POST["categoryDescription"]));
 
     // // Fields required
-    // if (empty($app_id) || !is_numeric($app_id)) {
+    // if (empty($categoryName)) {
     //     $ok = false;
-    //     $output .= "app_id can not be empty and must be numeric!<br>";
+    //     $output .= "Name can not be empty!<br>";
     // }
-    // if (empty($app_secret)) {
+    // if (empty($categoryDescription)) {
     //     $ok = false;
-    //     $output .= "app_secret can not be empty!<br>";
+    //     $output .= "Please write a description!<br>";
     // }
-    // if (empty($userID) || (!is_numeric($userID))) {
-    //     $ok = false;
-    //     $output .= "userID can not be empty and must be numeric!<br>";
-    // }
-    // if (empty($token)) {
-    //     $ok = false;
-    //     $output .= "token can not be empty!<br>";
-    // }
-
 
     // if ($ok === true) {
-    //     $sql = "UPDATE fb_access_token SET
-    // 	app_id=:app_id, 
-    // 	app_secret=:app_secret,
-    // 	userID=:userID,
-    // 	token=:token        
-    // 	WHERE id=:tokenID";
+    //     $sql = "UPDATE category SET
+    // 	categoryName=:categoryName, 
+    // 	categoryDescription=:categoryDescription
+    // 	WHERE categoryID=:categoryID";
 
     //     $stmt = $db->prepare($sql);
-    //     $stmt->bindParam(":tokenID", $tokenID);
-    //     $stmt->bindParam(":app_id", $app_id);
-    //     $stmt->bindParam(":app_secret", $app_secret);
-    //     $stmt->bindParam(":userID", $userID);
-    //     $stmt->bindParam(":token", $token);
+    //     $stmt->bindParam(":categoryID", $categoryID);
+    //     $stmt->bindParam(":categoryName", $categoryName);
+    //     $stmt->bindParam(":categoryDescription", $categoryDescription);
 
     //     if ($stmt->execute()) {
     //         $output .= "success";
-    //         // header("Location: " . APPURL . "/admin/gallery");
+    //         // header("Location: " . APPURL . "/admin/categories");
     //     } else {
     //         $output .= "Query Error!<br> Something went wrong. Please try again later.";
     //     }

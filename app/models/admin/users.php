@@ -1,17 +1,13 @@
 <?php
-// Database connection
-require_once DB_PATH . "/db.php";
 
 # ---------------------------------------------------
-function getPages()
+function getUsers()
 # ---------------------------------------------------
 {
     global $db;
 
-    $sql = "SELECT * FROM pages 
-    INNER JOIN category ON pageCategoryID=categoryID
-    INNER JOIN user ON pageUserID=userID
-    ORDER BY pageName DESC";
+    $sql = "SELECT * FROM user
+    ORDER BY userCreatedAt DESC";
 
     $stmt = $db->query($sql);
 
@@ -25,14 +21,13 @@ function getPages()
 }
 
 # ---------------------------------------------------
-function getPageById($id)
+function getUserById($id)
 # ---------------------------------------------------
 {
     global $db;
 
-    $sql = "SELECT * FROM pages 
-    INNER JOIN category ON pageCategoryID=categoryID
-    WHERE pageID=:id";
+    $sql = "SELECT * FROM user 
+    WHERE userID=:id";
 
     $stmt = $db->prepare($sql);
 

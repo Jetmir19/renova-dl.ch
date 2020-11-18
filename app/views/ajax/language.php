@@ -2,7 +2,6 @@
 
 /**
  * Here we handle the ajax JavaScript request
- * In library folder and file ajax.php we declare the functions to be called
  */
 
 // Getting Page language
@@ -12,7 +11,24 @@ if (isset($_POST['lang']))
 {
     $lang = htmlspecialchars($_POST['lang']);
 
-    getLanguageFromSession($lang);
+    switch ($lang) {
+        case 'AL':
+            $_SESSION['language'] = 'AL';
+            session_regenerate_id(true);
+            break;
+        case 'EN':
+            $_SESSION['language'] = 'EN';
+            session_regenerate_id(true);
+            break;
+        default:
+            $_SESSION['language'] = 'AL';
+            session_regenerate_id(true);
+            break;
+    }
+
+    echo $_SESSION['language'];
+
+    exit;
 }
 
 // Get Days left

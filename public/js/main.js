@@ -32,17 +32,17 @@ function contactFormAction() {
                         <div class='col mt-3 h-100'>
                         <h3 class='text-success text-center py-3'>Thank you for contacting us!</h3>
                         <p class='text-muted text-center'>Thank you very much for your interest and we will contact you as soon as possible.</p>
-                        </div>
-                        `;
+                        </div>`;
                     setTimeout(function () {
                         window.location.reload();
                     }, 3000);
                 } else {
+                    const result = xhr.response.split("<br>").filter(Boolean);
                     scrollTopBtn();
-                    contact_result.innerHTML =
-                        "<div class='alert alert-danger' role='alert'>" +
-                        xhr.responseText +
-                        "</div>";
+                    for (res of result) {
+                        contact_result.innerHTML += `
+                        <div class="alert alert-danger" role="alert">${res}</div>`;
+                    }
                 }
             });
         } else {
@@ -67,7 +67,7 @@ function changeLanguage() {
             dataAttr = e.target.getAttribute("data-lang");
             const xhr = new XMLHttpRequest();
 
-            xhr.open("POST", "ajax/ajax", true);
+            xhr.open("POST", "ajax/language", true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
             xhr.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {

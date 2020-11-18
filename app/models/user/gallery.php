@@ -1,7 +1,5 @@
 <?php
 
-require_once DB_PATH . "/db.php";
-
 // GET Gallery Photos from DB
 # ---------------------------------------------------
 function getGalleryPhotosFromDB($limit = 12)
