@@ -6,20 +6,19 @@ if (isset($_GET['action'])) {
         <?php
         if ($_GET['action'] == 'edit') {
             echo "<h5>User edit</h5><span>ID: " . $_GET['id'] . "</span>";
-            $sql = "SELECT * FROM user 
-                WHERE userID = $_GET[id]";
-            $stmt = $db->query($sql);
-            while ($row = $stmt->fetch()) {
-                $userName = $row["userName"];
-                $userEmail = $row["userEmail"];
-                $userRole = $row["userRole"];
-                $userPassword = $row["userPassword"];
-            }
+            $row = getUserById($_GET['id']);
+            $userName = $row["userName"];
+            $userEmail = $row["userEmail"];
+            $userRole = $row["userRole"];
+            // $oldPassword = $row["oldPassword"];
+            // $newPassword = $row["newPassword"];
         }
         ?>
+
         <form id="formUser" class="form-user" action="#" method="post" enctype="multipart/form-data">
             <!-- Output Results -->
             <div id="user_result"></div>
+
             <div class="form-group">
                 <input type="text" class="form-control" id="userName" name="userName" placeholder="Username" value="<?php echo $userName; ?>" readonly>
             </div>

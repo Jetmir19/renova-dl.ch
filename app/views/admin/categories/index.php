@@ -54,15 +54,13 @@ if (!isset($_GET['action'])) {
             <tbody id="tableCategories">
                 <!-- MySQL START -->
                 <?php
-                $sql = "SELECT * FROM category
-                                INNER JOIN user ON categoryUserID=userID
-                                ORDER BY categoryDate DESC";
-                $stmt = $db->query($sql);
+                $categories = getCategories();
                 $counter = 0;
-                while ($row = $stmt->fetch()) {
-                    $counter += 1;
-                    echo "<tr>
-                            <th scope='row'>$counter</th>
+                if ($categories) {
+                    foreach ($categories as $row) {
+                        $counter += 1;
+                        echo "<tr>
+							<th scope='row'>$counter</th>
                             <td>$row[categoryName]</td>
                             <td>$row[userName]</td>
                             <td>" . substr($row['categoryDescription'], 0, 30) . "...</td>
@@ -71,20 +69,17 @@ if (!isset($_GET['action'])) {
                             <i class='far fa-edit'></i>
                             </a>
                             <a class='btn btn-link' href='?action=delete&id=$row[categoryID]'>
-                        <i class='far fa-trash-alt'></i>
-                        </a>
+                            <i class='far fa-trash-alt'></i>
+                            </a>
                             </td>
-                            </tr>";
-                }
-                if ($stmt->rowCount() == 0) {
+                        </tr>";
+                    }
+                } else {
                     echo "<tr>
-                            <th scope='row'></th>
-                            <td></td>
-                            <td><h1 class='text-info text-center'>No Records</h1></td>
-                            <td></td>
-                            <td></td>
-                            </tr>";
+                        <td colspan='5'><h1 class='text-info text-center'>No Records</h1></td>
+                    </tr>";
                 }
+
                 ?>
                 <!-- MySQL END -->
             </tbody>

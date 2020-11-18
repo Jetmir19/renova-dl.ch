@@ -16,15 +16,13 @@ if (isset($_GET['action'])) {
         <?php
         if ($_GET['action'] == 'edit') {
             echo "<h5>Category edit</h5><span>ID: " . $_GET['id'] . "</span>";
-            $sql = "SELECT * FROM category 
-                            WHERE categoryID = $_GET[id]";
-            $stmt = $db->query($sql);
-            while ($row = $stmt->fetch()) {
-                $categoryName = $row["categoryName"];
-                $categoryDescription = $row["categoryDescription"];
-            }
+            $row = getCategoryById($_GET['id']);
+            $categoryName = $row["categoryName"];
+            $categoryDescription = $row["categoryDescription"];
+            $userName = $row["userName"];
         }
         ?>
+
         <form id="formCategory" class="form-category" action="<?php echo APPURL . "/admin/categories"; ?>" method="post" enctype="multipart/form-data">
             <!-- Output Results -->
             <div id="categories_result"></div>
@@ -34,6 +32,11 @@ if (isset($_GET['action'])) {
                 <div class="form-group text-left">
                     <label for="categoryName">Category Name</label>
                     <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Name" value="<?php echo $categoryName; ?>">
+                </div>
+
+                <div class="form-group text-left">
+                    <label for="categoryName">User</label>
+                    <input type="text" class="form-control" id="userName" name="userName" placeholder="Name" value="<?php echo $userName; ?>" readonly>
                 </div>
 
                 <div class="form-group text-left">
@@ -59,8 +62,8 @@ if (isset($_GET['action'])) {
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
-
             <!-- If delete is called END -->
+
             <?php if ($_GET['action'] == 'delete') : ?>
                 <div class="form-group">
                     <!-- Delete Button and categoryID send -->

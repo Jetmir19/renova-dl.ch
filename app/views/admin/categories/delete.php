@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (isset($_POST["dbDelete"])) {
     $ok = true;
@@ -8,8 +8,7 @@ if (isset($_POST["dbDelete"])) {
     if ($ok === true) {
 
         $sql = "DELETE FROM category
-                WHERE categoryID=:categoryID
-                ";
+                WHERE categoryID=:categoryID";
 
         $stmt = $db->prepare($sql);
         $stmt->bindParam(":categoryID", $categoryID);

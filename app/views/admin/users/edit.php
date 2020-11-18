@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (isset($_POST["dbEdit"])) {
     $ok = true;
@@ -8,27 +8,23 @@ if (isset($_POST["dbEdit"])) {
     $oldPassword = $_POST["oldPassword"];
     $newPassword = $_POST["newPassword"];
 
-    // Select User based on userID
-    $sql = "SELECT * FROM user WHERE userID=:userID";
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam(":userID", $userID);
-    $stmt->execute();
-    $row = $stmt->fetch();
+    // Get User based on userID
+    $row = getUserById($userID);
 
     // Email exist Validation START
     if (filter_var($userEmail, FILTER_VALIDATE_EMAIL) === false) {
         $ok = false;
         $output .= "The email you entered was not valid";
     }
-    // Select all emails expect the editin user email
+    // Select all emails expect the existing user email
     $sql = "SELECT userEmail FROM user WHERE userID != :userID";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(":userID", $userID);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     // If email exists in the array
-    foreach ($result as $key => $value) {
-        if ($userEmail == $value['userEmail']) {
+    foreach ($result as $r) {
+        if ($userEmail == $r['userEmail']) {
             $ok = false;
             $output .= "Email already exists!<br>";
         }
@@ -51,6 +47,7 @@ if (isset($_POST["dbEdit"])) {
         }
     }
 
+    // User role
     if (isset($_POST["userRole"])) {
         $userRole = 'admin';
     } else {

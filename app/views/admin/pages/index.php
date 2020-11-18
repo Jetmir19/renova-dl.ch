@@ -61,40 +61,34 @@ if (!(isset($_GET['action']))) {
             <tbody id="tablePages">
                 <!-- MySQL START -->
                 <?php
-                $sql = "SELECT * FROM pages 
-                            INNER JOIN category ON pageCategoryID=categoryID
-                            INNER JOIN user ON pageUserID=userID
-                            ORDER BY pageName DESC";
-                $stmt = $db->query($sql);
+                $pages = getPages();
                 $counter = 0;
-                while ($row = $stmt->fetch()) {
-                    $pageStatus = ($row['pageStatus'] == 1) ? "<span style='color:#00E676;font-size:1.3em;'><i class='fas fa-circle'></i></span>" : "<span style='color:#dc3545;font-size:1.3em;'><i class='fas fa-circle'></i></span>";
-                    $counter += 1;
-                    echo "<tr>
-                        <th scope='row'>$counter</th>
-                        <td>$row[pageName]</td>
-                        <td>$row[categoryName]</td>
-                        <td>$row[pageLanguage]</td>
-                        <td>$pageStatus</td>
-                        <td>
-                        <a class='btn btn-link' href='?action=edit&id=$row[pageID]'>
-                        <i class='far fa-edit'></i>
-                        </a>
-                        <a class='btn btn-link' href='?action=delete&id=$row[pageID]'>
-                        <i class='far fa-trash-alt'></i>
-                        </a>
-                        </td>
+                if ($pages) {
+                    foreach ($pages as $row) {
+                        $pageStatus = ($row['pageStatus'] == 1) ? "<span style='color:#00E676;font-size:1.3em;'><i class='fas fa-circle'></i></span>" : "<span style='color:#dc3545;font-size:1.3em;'><i class='fas fa-circle'></i></span>";
+                        $counter += 1;
+                        echo "<tr>
+                            <th scope='row'>$counter</th>
+                            <td>$row[pageName]</td>
+                            <td>$row[categoryName]</td>
+                            <td>$row[pageLanguage]</td>
+                            <td>$pageStatus</td>
+                            <td>
+                            <a class='btn btn-link' href='?action=edit&id=$row[pageID]'>
+                            <i class='far fa-edit'></i>
+                            </a>
+                            <a class='btn btn-link' href='?action=delete&id=$row[pageID]'>
+                            <i class='far fa-trash-alt'></i>
+                            </a>
+                            </td>
                         </tr>";
-                }
-                if ($stmt->rowCount() == 0) {
+                    }
+                } else {
                     echo "<tr>
-                        <th scope='row'></th>
-                        <td></td>
-                        <td><h1 class='text-info text-center'>No Records</h1></td>
-                        <td></td>
-                        <td></td>
-                        </tr>";
+                        <td colspan='6'><h1 class='text-info text-center'>No Records</h1></td>
+                    </tr>";
                 }
+
                 ?>
                 <!-- MySQL END -->
             </tbody>

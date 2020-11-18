@@ -16,21 +16,17 @@ if (isset($_GET['action'])) {
         <?php
         if ($_GET['action'] == 'edit') {
             echo "<h5>Seite Bearbeiten</h5><span>ID: " . $_GET['id'] . "</span>";
-            $sql = "SELECT * FROM pages 
-                        INNER JOIN category ON pageCategoryID=categoryID
-                        WHERE pageID = $_GET[id]";
-            $stmt = $db->query($sql);
-            while ($row = $stmt->fetch()) {
-                $pageName = $row["pageName"];
-                $pageCategoryID = $row["categoryID"];
-                $categoryName = $row["categoryName"];
-                $pageTitle = $row["pageTitle"];
-                $pageLanguage = $row["pageLanguage"];
-                $pageContent = $row["pageContent"];
-                $pageStatus = $row["pageStatus"];
-            }
+            $row = getPageById($_GET['id']);
+            $pageName = $row["pageName"];
+            $pageCategoryID = $row["categoryID"];
+            $categoryName = $row["categoryName"];
+            $pageTitle = $row["pageTitle"];
+            $pageLanguage = $row["pageLanguage"];
+            $pageContent = $row["pageContent"];
+            $pageStatus = $row["pageStatus"];
         }
         ?>
+
         <form id="formPages" class="form-pages" action="#" method="post" enctype="multipart/form-data">
             <!-- Output Results -->
             <div id="pages_result"></div>
@@ -67,15 +63,14 @@ if (isset($_GET['action'])) {
                     echo "<label for='pageCategoryID'>Category</label>";
                     echo "<select id='pageCategoryID' name='pageCategoryID' class='form-control'>";
                     echo "<option class='select_hide' disabled selected>Choose Category</option>";
-                    $sql = "SELECT * FROM category";
-                    $stmt = $db->query($sql);
-                    while ($row = $stmt->fetch()) {
-                        if ($row['categoryName'] == $categoryName) {
+                    $categories = getCategories();
+                    foreach ($categories as $cat) {
+                        if ($cat['categoryName'] == $categoryName) {
                             $selected = "selected";
                         } else {
                             $selected = "";
                         }
-                        echo "<option value='$row[categoryID]' $selected>$row[categoryName]</option>";
+                        echo "<option value='$cat[categoryID]' $selected>$cat[categoryName]</option>";
                     }
                     echo "</select>";
                     ?>

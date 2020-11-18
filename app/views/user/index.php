@@ -2,7 +2,7 @@
 
 <!-- MAIN Content START -->
 <?php
-getContent('home', 'main', 1);
+getContent('index', 'index', 1);
 ?>
 <!-- MAIN Content END -->
 

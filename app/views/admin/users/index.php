@@ -52,33 +52,28 @@ if (!(isset($_GET['action']))) {
             <tbody id="tableUsers">
                 <!-- MySQL START -->
                 <?php
-                $sql = "SELECT * FROM user
-                            ORDER BY userCreatedAt DESC";
-                $stmt = $db->query($sql);
+                $users = getUsers();
                 $counter = 0;
-                while ($row = $stmt->fetch()) {
-                    $counter += 1;
-                    echo "<tr>
-                        <th scope='row'>$counter</th>
-                        <td>$row[userID]</td>
-                        <td>$row[userName]</td>
-                        <td>$row[userEmail]</td>
-                        <td>$row[userRole]</td>
-                        <td>
-                        <a class='btn btn-link' href='?action=edit&id=$row[userID]'>
-                        <i class='far fa-edit'></i>
-                        </a>
-                        </td>
+                if ($users) {
+                    foreach ($users as $row) {
+                        $counter += 1;
+                        echo "<tr>
+                            <th scope='row'>$counter</th>
+                            <td>$row[userID]</td>
+                            <td>$row[userName]</td>
+                            <td>$row[userEmail]</td>
+                            <td>$row[userRole]</td>
+                            <td>
+                            <a class='btn btn-link' href='?action=edit&id=$row[userID]'>
+                            <i class='far fa-edit'></i>
+                            </a>
+                            </td>
                         </tr>";
-                }
-                if ($stmt->rowCount() == 0) {
+                    }
+                } else {
                     echo "<tr>
-                        <th scope='row'></th>
-                        <td></td>
-                        <td><h1 class='text-info text-center'>No Records</h1></td>
-                        <td></td>
-                        <td></td>
-                        </tr>";
+                        <td colspan='6'><h1 class='text-info text-center'>No Records</h1></td>
+                    </tr>";
                 }
                 ?>
                 <!-- MySQL END -->

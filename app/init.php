@@ -7,9 +7,14 @@ require_once __DIR__ . "/config/config.php";
 require_once LIBRARY_PATH . "/helpers.php";
 require_once LIBRARY_PATH . "/routes.php";
 require_once LIBRARY_PATH . "/ajax.php";
-// Database
+// User - Database functions
 require_once DB_PATH . "/user/content.php";
 require_once DB_PATH . "/user/gallery.php";
+// Admin - Database functions
+require_once DB_PATH . "/admin/categories.php";
+require_once DB_PATH . "/admin/pages.php";
+require_once DB_PATH . "/admin/gallery.php";
+require_once DB_PATH . "/admin/users.php";
 
 
 ########### Routing START #############

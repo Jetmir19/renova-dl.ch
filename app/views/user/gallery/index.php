@@ -22,11 +22,16 @@
 
             // or...
 
-            foreach ($data['gallery'] as $gallery) {
-                echo '<div class="mb-3 pics animation all 2">
-                            <img class="img-fluid galleryImg" src="' . APPURL . '/public/img/gallery/' . $gallery['source'] . '" alt="">
+            if ($data['gallery']) {
+                foreach ($data['gallery'] as $gallery) {
+                    echo '<div class="mb-3 pics animation all 2">
+                        <img class="img-fluid galleryImg" src="' . APPURL . '/public/img/gallery/' . $gallery['source'] . '" alt="">
                     </div>';
+                }
+            } else {
+                echo '<h2>Something went wrong!</h2>';
             }
+
             ?>
         </div>
         <!-- Grid row gallery END -->

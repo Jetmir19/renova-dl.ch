@@ -30,32 +30,21 @@ if (!isset($_GET['action'])) {
     <hr class="border-top">
 
     <!-- TOTAL PHOTOS -->
-    <div class="table-responsive">
+    <div class="table-responsive-sm">
         <table class="table table-striped text-left">
             <thead class="bg-secondary text-white">
                 <tr>
                     <th scope="col"> Total Photos saved in Database</th>
                 </tr>
             </thead>
-            <tbody id="tableFacebookApi">
+            <tbody>
                 <!-- MySQL START -->
                 <?php
-                $sql = "SELECT COUNT(*) as totalRows FROM gallery";
-                $stmt = $db->query($sql);
-                while ($row = $stmt->fetch()) {
-                    echo "<tr>
-                            <th scope='row'>Total Photos: " . $row['totalRows'] . "</th>
-                            </tr>";
-                }
-                if ($stmt->rowCount() == 0) {
-                    echo "<tr>
-                            <th scope='row'></th>
-                            <td></td>
-                            <td><h1 class='text-info text-center'>No Records</h1></td>
-                            <td></td>
-                            <td></td>
-                            </tr>";
-                }
+                $photosCount = getPhotosCount();
+                echo "<tr>
+                    <th scope='row'>Total Photos: " . $photosCount['totalRows'] . "</th>
+                </tr>";
+
                 ?>
                 <!-- MySQL END -->
             </tbody>
@@ -70,40 +59,38 @@ if (!isset($_GET['action'])) {
             <thead class="bg-secondary text-white">
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">User</th>
                     <th scope="col">Link</th>
                     <th scope="col">Created Time</th>
                     <th scope="col">Source</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
-            <tbody id="tableFacebookApi">
+            <tbody>
                 <!-- MySQL START -->
                 <?php
-                $sql = "SELECT * FROM gallery";
-                $stmt = $db->query($sql);
+                $photos = getPhotos();
                 $counter = 0;
-                while ($row = $stmt->fetch()) {
-                    $counter += 1;
-                    echo "<tr>
+                if ($photos) {
+                    foreach ($photos as $row) {
+                        $counter += 1;
+                        echo "<tr>
                             <th scope='row'>$counter</th>
+                            <td>$row[userName]</td>
                             <td>$row[link]</td>
-                            <td>$row[created_time]</td>
+                            <td>$row[galleryDate]</td>
                             <td>$row[source]</td>
                             <td>
-                            <a class='btn btn-link' href='?action=edit&id=$row[id]'>
+                            <a class='btn btn-link' href='?action=edit&id=$row[galleryID]'>
                             <i class='far fa-edit'></i>
                             </a>
                             </td>
                         </tr>";
-                }
-                if ($stmt->rowCount() == 0) {
+                    }
+                } else {
                     echo "<tr>
-                            <th scope='row'></th>
-                            <td></td>
-                            <td><h1 class='text-info text-center'>No Records</h1></td>
-                            <td></td>
-                            <td></td>
-                            </tr>";
+                        <td colspan='6'><h1 class='text-info text-center'>No Records</h1></td>
+                    </tr>";
                 }
                 ?>
                 <!-- MySQL END -->
