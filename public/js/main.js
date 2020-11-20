@@ -37,12 +37,9 @@ function contactFormAction() {
                         window.location.reload();
                     }, 3000);
                 } else {
-                    const result = xhr.response.split("<br>").filter(Boolean);
                     scrollTopBtn();
-                    for (res of result) {
-                        contact_result.innerHTML += `
-                        <div class="alert alert-danger" role="alert">${res}</div>`;
-                    }
+                    contact_result.innerHTML = `
+                        <div class="alert alert-danger" role="alert">${xhr.response}</div>`;
                 }
             });
         } else {

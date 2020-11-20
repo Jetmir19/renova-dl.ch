@@ -1,7 +1,7 @@
 <?php
 
 # ---------------------------------------------------
-function getPhotos()
+function getImages()
 # ---------------------------------------------------
 {
     global $db;
@@ -23,7 +23,7 @@ function getPhotos()
 }
 
 # ---------------------------------------------------
-function getPhotoById($id)
+function getImageById($id)
 # ---------------------------------------------------
 {
     global $db;
@@ -47,7 +47,7 @@ function getPhotoById($id)
 }
 
 # ---------------------------------------------------
-function getPhotosCount()
+function getImagesCount()
 # ---------------------------------------------------
 {
     global $db;
@@ -63,4 +63,121 @@ function getPhotosCount()
     }
 
     return false;
+}
+
+# ---------------------------------------------------
+function uploadImage()
+# ---------------------------------------------------
+{
+    # code...
+}
+
+# ---------------------------------------------------
+function insertImage($postArray)
+# ---------------------------------------------------
+{
+    // global $db;
+    // $ok = true;
+    // $output = '';
+
+    // // Validation
+    // if (empty($postArray['categoryName'])) {
+    //     $ok = false;
+    //     $output .= "Name can not be empty!<br>";
+    // }
+    // if (empty($postArray['categoryDescription'])) {
+    //     $ok = false;
+    //     $output .= "Please insert a description!<br>";
+    // }
+
+    // $sql = "INSERT INTO category
+    // 	(
+    // 		categoryName,
+    // 		categoryUserID,
+    // 		categoryDescription
+    // 	)
+    // 	VALUES
+    // 	(
+    // 		:categoryName,
+    // 		:categoryUserID,
+    // 		:categoryDescription
+    //     )";
+
+    // $stmt = $db->prepare($sql);
+
+    // $stmt->bindParam(":categoryName", $postArray['categoryName']);
+    // $stmt->bindParam(":categoryUserID", $postArray['categoryUserID']);
+    // $stmt->bindParam(":categoryDescription", $postArray['categoryDescription']);
+
+    // if ($ok === true) {
+    //     if ($stmt->execute()) {
+    //         $output .= "success";
+    //     } else {
+    //         $output .= "Something went wrong with the Database! <br> Please try again later.";
+    //     }
+    // }
+
+    // return $output;
+}
+
+# ---------------------------------------------------
+function updateImage($postArray)
+# ---------------------------------------------------
+{
+    // global $db;
+    // $ok = true;
+    // $output = '';
+
+    // // Validation
+    // if (empty($postArray['categoryName'])) {
+    //     $ok = false;
+    //     $output .= "Name can not be empty!<br>";
+    // }
+    // if (empty($postArray['categoryDescription'])) {
+    //     $ok = false;
+    //     $output .= "Please insert a description!<br>";
+    // }
+
+    // $sql = "UPDATE category 
+    // SET categoryName=:categoryName, categoryDescription=:categoryDescription
+    // WHERE categoryID=:categoryID";
+
+    // $stmt = $db->prepare($sql);
+
+    // $stmt->bindParam(":categoryID", $postArray['categoryID']);
+    // $stmt->bindParam(":categoryName", $postArray['categoryName']);
+    // $stmt->bindParam(":categoryDescription", $postArray['categoryDescription']);
+
+    // if ($ok === true) {
+    //     if ($stmt->execute()) {
+    //         $output .= "success";
+    //     } else {
+    //         $output .= "Something went wrong with the Database! <br> Please try again later.";
+    //     }
+    // }
+
+    // return $output;
+}
+
+# ---------------------------------------------------
+function deleteImage($galleryID)
+# ---------------------------------------------------
+{
+    // global $db;
+    // $output = '';
+
+    // $sql = "DELETE FROM category
+    // WHERE categoryID=:categoryID";
+
+    // $stmt = $db->prepare($sql);
+
+    // $stmt->bindParam(":categoryID", $categoryID);
+
+    // if ($stmt->execute()) {
+    //     $output .= "success";
+    // } else {
+    //     $output .= "Something went wrong with the Database! <br> Please try again later.";
+    // }
+
+    // return $output;
 }

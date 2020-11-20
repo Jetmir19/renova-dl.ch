@@ -2,27 +2,6 @@
 // User auth
 checkUserLoggedIn();
 
-// Database connection
-require_once DB_PATH . "/connect.php";
-// global variable
-global $db;
-
-$output = "";
-
-
-############# Edit in DB START #####################
-require_once VIEWS_PATH . "/admin/gallery/add.php";
-############# Edit in DB END #######################
-
-############# Edit in DB START #####################
-require_once VIEWS_PATH . "/admin/gallery/edit.php";
-############# Edit in DB END #######################
-
-############# Edit in DB START #####################
-require_once VIEWS_PATH . "/admin/gallery/delete.php";
-############# Edit in DB END #######################
-
-
 ############# Gallery Home START ######################
 require_once VIEWS_PATH . "/admin/includes/header.php";
 
@@ -39,20 +18,20 @@ if (!isset($_GET['action'])) {
 
     <hr class="border-top">
 
-    <!-- TOTAL PHOTOS -->
+    <!-- TOTAL IMAGES -->
     <div class="table-responsive-sm">
         <table class="table table-striped text-left">
             <thead class="bg-secondary text-white">
                 <tr>
-                    <th scope="col"> Total Photos saved in Database</th>
+                    <th scope="col"> Total Images saved in Database</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- MySQL START -->
                 <?php
-                $photosCount = getPhotosCount();
+                $imagesCount = getImagesCount();
                 echo "<tr>
-                    <th scope='row'>Total Photos: " . $photosCount['totalRows'] . "</th>
+                    <th scope='row'>Total Images: " . $imagesCount['totalRows'] . "</th>
                 </tr>";
 
                 ?>
@@ -60,36 +39,36 @@ if (!isset($_GET['action'])) {
             </tbody>
         </table>
     </div>
-
     <hr class="border mt-0">
-
-    <!-- ALL PHOTOS -->
+    <!-- ALL IMAGES -->
     <div class="table-responsive-sm">
         <table class="table table-striped">
             <thead class="bg-secondary text-white">
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Image</th>
                     <th scope="col">User</th>
-                    <th scope="col">Link</th>
+                    <th scope="col">Title</th>
                     <th scope="col">Created Time</th>
-                    <th scope="col">Source</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- MySQL START -->
                 <?php
-                $photos = getPhotos();
+                $images = getImages();
                 $counter = 0;
-                if ($photos) {
-                    foreach ($photos as $row) {
+                if ($images) {
+                    foreach ($images as $row) {
                         $counter += 1;
                         echo "<tr>
                             <th scope='row'>$counter</th>
+                            <td>
+                            <img src='" . APPURL . "/public/img/gallery/" . $row['galleryImage'] . "' width='70px' height='80px'>
+                            </td>
                             <td>$row[userName]</td>
-                            <td>$row[link]</td>
+                            <td>$row[galleryTitle]</td>
                             <td>$row[galleryDate]</td>
-                            <td>$row[source]</td>
                             <td>
                             <a class='btn btn-link' href='?action=edit&id=$row[galleryID]'>
                             <i class='far fa-edit'></i>
@@ -110,16 +89,13 @@ if (!isset($_GET['action'])) {
             </tbody>
         </table>
     </div>
-
 <?php
 }
 ############# Gallery Home END #####################
 
-
 ############# Gallery Form START ###################
 require_once VIEWS_PATH . "/admin/gallery/form.php";
 ############# Gallery Form END #####################
-
 
 require_once VIEWS_PATH . "/admin/includes/footer.php";
 ?>

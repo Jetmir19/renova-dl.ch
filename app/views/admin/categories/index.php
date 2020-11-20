@@ -2,29 +2,6 @@
 // User auth
 checkUserLoggedIn();
 
-// Database connection
-require_once DB_PATH . "/connect.php";
-// global variable
-global $db;
-
-$output = "";
-$categoryName = "";
-$categoryDescription = "";
-
-
-############# Insert to DB START #####################
-require_once VIEWS_PATH . "/admin/categories/add.php";
-############# Insert to DB END #######################
-
-############# Edit in DB START ########################
-require_once VIEWS_PATH . "/admin/categories/edit.php";
-############# Edit in DB END ##########################
-
-############# Delete in DB START ########################
-require_once VIEWS_PATH . "/admin/categories/delete.php";
-############# Delete in DB END ##########################
-
-
 ############# Categories Home START ###################
 require_once VIEWS_PATH . "/admin/includes/header.php";
 
@@ -38,9 +15,7 @@ if (!isset($_GET['action'])) {
             <a href="?action=add" class="btn btn-success">Create New +</a>
         </div>
     </div>
-	
     <hr class="border-top">
-
     <div class="table-responsive-sm">
         <table class="table table-striped">
             <thead class="bg-secondary text-white">
@@ -80,22 +55,18 @@ if (!isset($_GET['action'])) {
                         <td colspan='5'><h1 class='text-info text-center'>No Records</h1></td>
                     </tr>";
                 }
-
                 ?>
                 <!-- MySQL END -->
             </tbody>
         </table>
     </div>
-
 <?php
 }
 ############# Categories Home END ######################
 
-
 ############# Gallery Form START #######################
 require_once VIEWS_PATH . "/admin/categories/form.php";
 ############# Gallery Form END #########################
-
 
 require_once VIEWS_PATH . "/admin/includes/footer.php";
 ?>

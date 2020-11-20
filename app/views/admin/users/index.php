@@ -2,25 +2,6 @@
 // User auth
 checkUserLoggedIn();
 
-// Database connection
-require_once DB_PATH . "/connect.php";
-// global variable
-global $db;
-
-$output = "";
-$userName = "";
-$userEmail = "";
-$userRole = "";
-$oldPassword = "";
-$newPassword = "";
-$userCreatedAt = "";
-
-
-############# Edit in DB START ###################
-require_once VIEWS_PATH . "/admin/users/edit.php";
-############# Edit in DB END #####################
-
-
 ############# Users Home START ########################
 require_once VIEWS_PATH . "/admin/includes/header.php";
 
@@ -31,13 +12,10 @@ if (!(isset($_GET['action']))) {
             <h3>Users</h3>
         </div>
     </div>
-
     <hr class="border-top">
-
     <div class="alert alert-info" role="alert">
         There are always three static users in the administration. It does not include adding a new user or deleting user, but updating the password or email and changing the user role is possible.
     </div>
-
     <div class="table-responsive-sm">
         <table class="table table-striped">
             <thead class="bg-dark text-white">
@@ -81,16 +59,13 @@ if (!(isset($_GET['action']))) {
             </tbody>
         </table>
     </div>
-
 <?php
 }
 ############# Users Home END ##################
 
-
 ############# Users Form START ###################
 require_once VIEWS_PATH . "/admin/users/form.php";
 ############# Users Form END #####################
-
 
 require_once VIEWS_PATH . "/admin/includes/footer.php";
 ?>

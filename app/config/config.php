@@ -2,19 +2,15 @@
 session_start();
 // session_regenerate_id(true);
 
-/* Error reporting */
-// ini_set("error_reporting", "true");
-// error_reporting(E_ALL | E_STRCT);
-
-/* DEFAULT Language */
-define('DEFAULT_LANGUAGE', 'AL');
+/* Error reporting - comment this on Production! */
+ini_set("error_reporting", "true");
+error_reporting(E_ALL);
 
 /* DB Params */
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'renova_dl_db');
-define('DB_CHARSET', 'utf8');
-define('DB_USER', 'root');
-define('DB_PASS', '123456');
+require_once __DIR__ . "/config_db.php";
+
+/* DEFAULT Language */
+define('DEFAULT_LANGUAGE', 'FR');
 
 
 /* App Email Address - for the Contact page */

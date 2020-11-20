@@ -3,10 +3,10 @@
 if (isset($_GET['action'])) {
 ?>
     <div class="container bg-white p-3" id="pageSuccess">
-        <form id="formPages" class="form-pages" action="#" method="post" enctype="multipart/form-data">
+        <form id="formPages" class="form-pages" action="<?php echo APPURL . "/admin/pages/" . $_GET['action']; ?>" method="post" enctype="multipart/form-data">
 
-            <!-- Output Results -->
-            <div id="pages_result"></div>
+            <!-- Flash Message -->
+            <div class="message"></div>
 
             <?php
             ########################## ADD START ###########################
@@ -150,12 +150,13 @@ if (isset($_GET['action'])) {
 
     <!-- Pages Ajax START -->
     <script>
-        document.getElementById("formPages").addEventListener("submit", (e) => {
+        const frm = document.getElementById("formPages");
+        frm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const pages_result = document.getElementById("pages_result");
-            const formPages = new FormData(document.getElementById("formPages"));
+            const message = document.querySelector(".message");
+            const frmData = new FormData(frm);
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', '<?php echo APPURL . '/admin/pages'; ?>', true);
+            xhr.open('POST', frm.action, true);
             xhr.onload = () => {
                 // Process our return data
                 if (xhr.status >= 200 && xhr.status < 400) {
@@ -163,14 +164,14 @@ if (isset($_GET['action'])) {
                     if (xhr.responseText.trim() == 'success') {
                         window.location.replace("<?php echo APPURL . '/admin/pages'; ?>");
                     } else {
-                        pages_result.innerHTML = "<div class='alert alert-danger' role='alert'>" + xhr.responseText + "</div>";
+                        message.innerHTML = "<div class='alert alert-danger' role='alert'>" + xhr.responseText + "</div>";
                     }
                 } else {
                     // Failed
                     console.log('error: ', xhr);
                 }
             };
-            xhr.send(formPages);
+            xhr.send(frmData);
         });
     </script>
     <!-- Pages Ajax END -->

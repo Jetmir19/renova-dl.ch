@@ -3,23 +3,23 @@
 if (isset($_GET['action'])) {
 ?>
     <div class="container bg-white p-3" id="catSuccess">
-        <form id="formGallery" class="form-gallery" action="<?php echo APPURL . "/admin/gallery"; ?>" method="post">
+        <form id="formGallery" class="form-gallery" action="<?php echo APPURL . "/admin/gallery/" . $_GET['action']; ?>" method="post">
 
-            <!-- Output Results -->
-            <div id="gallery_result"></div>
+            <!-- Flash Message -->
+            <div class="message"></div>
 
             <?php
             ########################## ADD START ###########################
             if ($_GET['action'] == 'add') {
             ?>
-                <h5>Add new Photo</h5>
+                <h5>Add new Image</h5>
                 <div class="form-group text-left">
-                    <label for="link">Link</label>
-                    <input type="text" class="form-control" id="link" name="link" placeholder="link">
+                    <label for="galleryTitle">Title</label>
+                    <input type="text" class="form-control" id="galleryTitle" name="galleryTitle" placeholder="Title">
                 </div>
                 <div class="form-group text-left">
-                    <label for="source">Source</label>
-                    <textarea class="form-control" rows="5" id="source" name="source" placeholder="source"></textarea>
+                    <label for="galleryImage">Images *</label><br>
+                    <input class="form-control pb-5 pt-3" type="file" name="galleryImage[]" id="galleryImage" multiple>
                 </div>
                 <div class="form-group">
                     <!-- Input hidden below will be posted with the form -->
@@ -35,17 +35,17 @@ if (isset($_GET['action'])) {
             ########################## EDIT START ##########################
             if ($_GET['action'] == 'edit') {
                 echo "<h5>Edit data</h5><span>ID: $_GET[id]</span>";
-                $row = getPhotoById($_GET['id']);
-                $link = $row['link'];
-                $source = $row['source'];
+                $row = getImageById($_GET['id']);
+                $galleryTitle = $row['galleryTitle'];
+                $galleryImage = $row['galleryImage'];
             ?>
                 <div class="form-group text-left">
-                    <label for="link">Link</label>
-                    <input type="text" class="form-control" id="link" name="link" placeholder="link" value="<?php echo $link; ?>">
+                    <label for="galleryTitle">Title</label>
+                    <input type="text" class="form-control" id="galleryTitle" name="galleryTitle" placeholder="Title" value="<?php echo $galleryTitle; ?>">
                 </div>
                 <div class="form-group text-left">
-                    <label for="source">Source</label>
-                    <textarea class="form-control" rows="5" id="source" name="source" placeholder="source"><?php echo $source; ?></textarea>
+                    <label for="galleryImage">Images *</label><br>
+                    <textarea class="form-control" rows="5" id="galleryImage" name="galleryImage" placeholder="Image"><?php echo $galleryImage; ?></textarea>
                 </div>
                 <div class="form-group">
                     <!-- galleryID senden -->
@@ -60,7 +60,7 @@ if (isset($_GET['action'])) {
             ########################## DELETE START ########################
             if ($_GET['action'] == 'delete') {
             ?>
-                <h5>Photo delete</h5>
+                <h5>Image delete</h5>
                 <h5 class="mb-5 mt-2">Are you sure?</h5>
                 <div class="form-group">
                     <!-- Delete Button and galleryID send -->
@@ -78,12 +78,13 @@ if (isset($_GET['action'])) {
 
     <!-- Gallery Ajax START -->
     <script>
-        document.getElementById("formGallery").addEventListener("submit", (e) => {
+        const frm = document.getElementById("formGallery");
+        frm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const gallery_result = document.getElementById("gallery_result");
-            const formGallery = new FormData(document.getElementById("formGallery"));
+            const message = document.querySelector(".message");
+            const frmData = new FormData(frm);
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', '<?php echo APPURL . '/admin/gallery '; ?>', true);
+            xhr.open('POST', frm.action, true);
             xhr.onload = () => {
                 // Process our return data
                 if (xhr.status >= 200 && xhr.status < 400) {
@@ -91,7 +92,7 @@ if (isset($_GET['action'])) {
                     if (xhr.responseText.trim() == 'success') {
                         window.location.replace("<?php echo APPURL . '/admin/gallery'; ?>");
                     } else {
-                        gallery_result.innerHTML = "<div class='alert alert-danger' role='alert'>" + xhr
+                        message.innerHTML = "<div class='alert alert-danger' role='alert'>" + xhr
                             .responseText + "</div>";
                     }
                 } else {
@@ -99,7 +100,7 @@ if (isset($_GET['action'])) {
                     console.log('error: ', xhr);
                 }
             };
-            xhr.send(formGallery);
+            xhr.send(frmData);
         });
     </script>
     <!-- Gallery Ajax END -->

@@ -3,10 +3,10 @@
 if (isset($_GET['action'])) {
 ?>
     <div class="container bg-white p-3" id="catSuccess">
-        <form id="formCategory" class="form-category" action="<?php echo APPURL . "/admin/categories"; ?>" method="post" enctype="multipart/form-data">
+        <form id="formCategory" class="form-category" action="<?php echo APPURL . "/admin/categories/" . $_GET['action']; ?>" method="post" enctype="multipart/form-data">
 
-            <!-- Output Results -->
-            <div id="categories_result"></div>
+            <!-- Flash Message -->
+            <div class="message"></div>
 
             <?php
             ########################## ADD START ###########################
@@ -86,12 +86,13 @@ if (isset($_GET['action'])) {
 
     <!-- Categories Ajax START -->
     <script>
-        document.getElementById("formCategory").addEventListener("submit", (e) => {
+        const frm = document.getElementById("formCategory");
+        frm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const categories_result = document.getElementById("categories_result");
-            const formCategory = new FormData(document.getElementById("formCategory"));
+            const message = document.querySelector(".message");
+            const frmData = new FormData(frm);
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', '<?php echo APPURL . '/admin/categories'; ?>', true);
+            xhr.open('POST', frm.action, true);
             xhr.onload = () => {
                 // Process our return data
                 if (xhr.status >= 200 && xhr.status < 400) {
@@ -99,7 +100,7 @@ if (isset($_GET['action'])) {
                     if (xhr.responseText.trim() == 'success') {
                         window.location.replace("<?php echo APPURL . '/admin/categories'; ?>");
                     } else {
-                        categories_result.innerHTML =
+                        message.innerHTML =
                             `<div class="alert alert-danger" role="alert">${xhr.response}</div>`;
                     }
                 } else {
@@ -107,7 +108,7 @@ if (isset($_GET['action'])) {
                     console.log('error: ', xhr);
                 }
             };
-            xhr.send(formCategory);
+            xhr.send(frmData);
         });
     </script>
     <!-- Categories Ajax END -->

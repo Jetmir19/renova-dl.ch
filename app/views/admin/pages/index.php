@@ -2,34 +2,6 @@
 // User auth
 checkUserLoggedIn();
 
-// Database connection
-require_once DB_PATH . "/connect.php";
-// global variable
-global $db;
-
-$output = "";
-$pageName = "";
-$pageCategoryID = "";
-$categoryName = "";
-$pageContent = "";
-$pageTitle = "";
-$pageLanguage = "";
-$pageStatus = "";
-
-
-############# Insert to DB START ################
-require_once VIEWS_PATH . "/admin/pages/add.php";
-############# Insert to DB END ##################
-
-############# Edit in DB START ###################
-require_once VIEWS_PATH . "/admin/pages/edit.php";
-############# Edit in DB END #####################
-
-############# Delete in DB START ###################
-require_once VIEWS_PATH . "/admin/pages/delete.php";
-############# Delete in DB END #####################
-
-
 ############# Pages Home START ########################
 require_once VIEWS_PATH . "/admin/includes/header.php";
 
@@ -44,7 +16,6 @@ if (!(isset($_GET['action']))) {
         </div>
     </div>
     <hr class="border-top">
-
     <div class="table-responsive-md">
         <table class="table table-striped">
             <thead class="bg-info">
@@ -88,22 +59,18 @@ if (!(isset($_GET['action']))) {
                         <td colspan='6'><h1 class='text-info text-center'>No Records</h1></td>
                     </tr>";
                 }
-
                 ?>
                 <!-- MySQL END -->
             </tbody>
         </table>
     </div>
-
 <?php
 }
 ############# Pages Home END #####################
 
-
 ############# Pages Form START ###################
 require_once VIEWS_PATH . "/admin/pages/form.php";
 ############# pages Form END #####################
-
 
 require_once VIEWS_PATH . "/admin/includes/footer.php";
 ?>

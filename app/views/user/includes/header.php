@@ -69,6 +69,9 @@
 							</a>
 						</li>
 						<li class="nav-item">
+							<a class="nav-link" href="<?php echo APPURL; ?>/PROJECTS">PROJECTS</a>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link" href="<?php echo APPURL; ?>/gallery">GALLERY</a>
 						</li>
 						<li class="nav-item">
