@@ -35,6 +35,9 @@ defined('UPLOAD_PATH')
 defined("LIBRARY_PATH")
     or define("LIBRARY_PATH", dirname(__DIR__) . '/library');
 
+defined("ROUTES_PATH")
+    or define("ROUTES_PATH", dirname(__DIR__) . '/routes');
+
 defined("DB_PATH")
     or define("DB_PATH", dirname(__DIR__) . '/database');
 

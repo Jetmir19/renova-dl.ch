@@ -3,7 +3,7 @@
 if (isset($_GET['action'])) {
 ?>
     <div class="container bg-white p-3" id="catSuccess">
-        <form id="formGallery" class="form-gallery" action="<?php echo APPURL . "/admin/gallery/" . $_GET['action']; ?>" method="post">
+        <form id="formGallery" class="form-gallery" action="<?php echo APPURL . "/admin/gallery/" . $_GET['action']; ?>" method="post" enctype="multipart/form-data">
 
             <!-- Flash Message -->
             <div class="message"></div>
@@ -19,7 +19,7 @@ if (isset($_GET['action'])) {
                 </div>
                 <div class="form-group text-left">
                     <label for="galleryImage">Image *</label><br>
-                    <input class="form-control pb-5 pt-3" type="file" name="galleryImage[]" id="galleryImage">
+                    <input class="form-control pb-5 pt-3" type="file" name="galleryImage" id="galleryImage">
                 </div>
                 <div class="form-group">
                     <!-- Input hidden below will be posted with the form -->

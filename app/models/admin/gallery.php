@@ -84,24 +84,23 @@ function insertImage($postArray, $files)
     $ok = true;
     $output = '';
 
+    $file_name = $files['galleryImage']['name'];
+    $file_size = $files['galleryImage']['size'];
+    $file_tmp = $files['galleryImage']['tmp_name'];
+    $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
+
     // Validation
     if (empty($postArray['galleryTitle'])) {
         $ok = false;
         $output .= "Title can not be empty!<br>";
     }
-    if (empty($files['galleryImage']['name'][0])) {
+    if (empty($files['galleryImage']['name'])) {
         $ok = false;
         $output .= "Please choose Image!<br>";
     }
 
-    // Handling files START
-    $file_name = $files['galleryImage']['name'][0];
-    $file_size = $files['galleryImage']['size'][0];
-    $file_tmp = $files['galleryImage']['tmp_name'][0];
-    $file_type = $files['galleryImage']['type'][0];
-    $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
-
-    if ($files["galleryImage"]["name"][0] !== "" && $files["galleryImage"]["error"][0] == 0) {
+    // Handling files
+    if ($files["galleryImage"]["name"] !== "" && $files["galleryImage"]["error"] == 0) {
         $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
         if (array_key_exists($file_ext, $allowed) === false) {
             $ok = false;
@@ -109,7 +108,7 @@ function insertImage($postArray, $files)
         }
         if ($file_size > 2097152) {
             $ok = false;
-            $output .= 'File size must be excately 2 MB<br>';
+            $output .= 'Error: File size is larger than the allowed limit(2MB maximum).<br>';
         }
         if (file_exists(UPLOAD_PATH . '/' . $file_name)) {
             $ok = false;
@@ -118,7 +117,6 @@ function insertImage($postArray, $files)
         // Rename file
         $file_name = uniqid() . "." . $file_ext;
     }
-    // Handling files END
 
     $sql = "INSERT INTO gallery
     	(
@@ -142,8 +140,38 @@ function insertImage($postArray, $files)
         if (uploadImage($file_tmp, $file_name) && $stmt->execute()) {
             $output .= "success";
         } else {
-            $output .= "Something went wrong! <br> Please try again later.";
+            $output .= "Something went wrong! <br>Please try again later.";
         }
+    }
+
+    return $output;
+}
+
+# ---------------------------------------------------
+function deleteImage($galleryID)
+# ---------------------------------------------------
+{
+    global $db;
+    $output = '';
+
+    $sql = "DELETE FROM gallery
+    WHERE galleryID=:galleryID";
+
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindParam(":galleryID", $galleryID);
+
+    // Remove the existing Images
+    $img = getImageById($galleryID);
+    $path = UPLOAD_PATH . '/' . $img['galleryImage'];
+    if (file_exists($path)) {
+        unlink($path);
+    }
+
+    if ($stmt->execute()) {
+        $output .= "success";
+    } else {
+        $output .= "Something went wrong with the Database! <br> Please try again later.";
     }
 
     return $output;
@@ -162,19 +190,19 @@ function updateImage($postArray)
     //     $ok = false;
     //     $output .= "Title can not be empty!<br>";
     // }
-    // if (empty($files['galleryImage']['name'][0])) {
+    // if (empty($files['galleryImage']['name'])) {
     //     $ok = false;
     //     $output .= "Please choose Image!<br>";
     // }
 
     // // Handling files START
-    // $file_name = $files['galleryImage']['name'][0];
-    // $file_size = $files['galleryImage']['size'][0];
-    // $file_tmp = $files['galleryImage']['tmp_name'][0];
-    // $file_type = $files['galleryImage']['type'][0];
+    // $file_name = $files['galleryImage']['name'];
+    // $file_size = $files['galleryImage']['size'];
+    // $file_tmp = $files['galleryImage']['tmp_name'];
+    // $file_type = $files['galleryImage']['type'];
     // $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
 
-    // if ($files["galleryImage"]["name"][0] !== "" && $files["galleryImage"]["error"][0] == 0) {
+    // if ($files["galleryImage"]["name"] !== "" && $files["galleryImage"]["error"] == 0) {
     //     $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
     //     if (array_key_exists($file_ext, $allowed) === false) {
     //         $ok = false;
@@ -230,36 +258,6 @@ function updateImage($postArray)
 
     // This should be removed in production
     $output = "The edit functionality is still in development.";
-
-    return $output;
-}
-
-# ---------------------------------------------------
-function deleteImage($galleryID)
-# ---------------------------------------------------
-{
-    global $db;
-    $output = '';
-
-    $sql = "DELETE FROM gallery
-    WHERE galleryID=:galleryID";
-
-    $stmt = $db->prepare($sql);
-
-    $stmt->bindParam(":galleryID", $galleryID);
-
-    // Remove the existing Images
-    $img = getImageById($galleryID);
-    $path = UPLOAD_PATH . '/' . $img['galleryImage'];
-    if (file_exists($path)) {
-        unlink($path);
-    }
-
-    if ($stmt->execute()) {
-        $output .= "success";
-    } else {
-        $output .= "Something went wrong with the Database! <br> Please try again later.";
-    }
 
     return $output;
 }

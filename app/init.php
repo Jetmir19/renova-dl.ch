@@ -7,7 +7,11 @@ require_once DB_PATH . "/connect.php";
 
 // Main includes
 require_once LIBRARY_PATH . "/helpers.php";
-require_once LIBRARY_PATH . "/routes.php";
+
+// Routes
+require_once ROUTES_PATH . "/user.php";
+require_once ROUTES_PATH . "/admin.php";
+require_once ROUTES_PATH . "/ajax.php";
 
 // User Models
 require_once MODELS_PATH . "/user/content.php";

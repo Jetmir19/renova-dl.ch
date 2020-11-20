@@ -1,7 +1,6 @@
 <?php
 
 if (isset($_POST["dbInsert"])) {
-
     // Posted data 
     $postArray = [
         'galleryTitle' => htmlspecialchars(trim($_POST["galleryTitle"])),

@@ -8,7 +8,7 @@
         ?>
 
         <!-- Database section START -->
-        <h1 class="font-weight-bold"><span class="black-border">FOTO</span> GALERIA</h1>
+        <h1 class="font-weight-bold"><span class="black-border">PRO</span>JEKTE</h1>
         <!-- Database section END -->
 
         <hr />
@@ -19,16 +19,16 @@
 
             // for ($i = 0; $i < count($data['gallery']); $i++) {
             //     echo '<div class="mb-3 pics animation all 2">
-            //                 <img class="img-fluid galleryImg" src="' . APPURL . '/public/img/gallery/' . $data['gallery'][$i]['source'] . '" alt="">
+            //                 <img class="img-fluid galleryImg" src="' . APPURL . '/public/img/gallery/' . $data['gallery'][$i]['galleryImage'] . '" alt="">
             //         </div>';
             // }
 
             // or...
 
-            if ($data['gallery']) {
-                foreach ($data['gallery'] as $gallery) {
+            if ($data['projekte']) {
+                foreach ($data['projekte'] as $gallery) {
                     echo '<div class="mb-3 pics animation all 2">
-                        <img class="img-fluid galleryImg" src="' . APPURL . '/public/img/gallery/' . $gallery['source'] . '" alt="">
+                        <img class="img-fluid galleryImg" src="' . APPURL . '/public/uploads/gallery/' . $gallery['galleryImage'] . '" alt="">
                     </div>';
                 }
             } else {

@@ -69,7 +69,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo APPURL; ?>/PROJECTS">PROJECTS</a>
+							<a class="nav-link" href="<?php echo APPURL; ?>/projekte">PROJEKTE</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="<?php echo APPURL; ?>/gallery">GALLERY</a>
@@ -78,7 +78,7 @@
 							<a class="nav-link" href="<?php echo APPURL; ?>/about">ABOUT</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo APPURL; ?>/contact">CONTACT</a>
+							<a class="nav-link" href="<?php echo APPURL; ?>/contact">KONTAKT</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -23,6 +23,17 @@ function forceRedirect($url)
     }
 }
 
+/* Print arrays in nicer format */
+# -----------------------------------------------------------
+function dd($var)
+# -----------------------------------------------------------
+{
+    echo '<pre>';
+    print_r($var);
+    echo '</pre>';
+    die;
+}
+
 /* Function helper to send html email */
 # ----------------------------------------------------------------------------------------------------
 function sendEmail($From, $FromName, $Subject, $mailtext, $To, $CC = '', $BCC = '', $Attachments = '')
