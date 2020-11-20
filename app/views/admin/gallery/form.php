@@ -18,8 +18,8 @@ if (isset($_GET['action'])) {
                     <input type="text" class="form-control" id="galleryTitle" name="galleryTitle" placeholder="Title">
                 </div>
                 <div class="form-group text-left">
-                    <label for="galleryImage">Images *</label><br>
-                    <input class="form-control pb-5 pt-3" type="file" name="galleryImage[]" id="galleryImage" multiple>
+                    <label for="galleryImage">Image *</label><br>
+                    <input class="form-control pb-5 pt-3" type="file" name="galleryImage[]" id="galleryImage">
                 </div>
                 <div class="form-group">
                     <!-- Input hidden below will be posted with the form -->
@@ -34,7 +34,7 @@ if (isset($_GET['action'])) {
 
             ########################## EDIT START ##########################
             if ($_GET['action'] == 'edit') {
-                echo "<h5>Edit data</h5><span>ID: $_GET[id]</span>";
+                echo "<h5>Image edit</h5><span>ID: $_GET[id]</span>";
                 $row = getImageById($_GET['id']);
                 $galleryTitle = $row['galleryTitle'];
                 $galleryImage = $row['galleryImage'];
@@ -44,8 +44,8 @@ if (isset($_GET['action'])) {
                     <input type="text" class="form-control" id="galleryTitle" name="galleryTitle" placeholder="Title" value="<?php echo $galleryTitle; ?>">
                 </div>
                 <div class="form-group text-left">
-                    <label for="galleryImage">Images *</label><br>
-                    <textarea class="form-control" rows="5" id="galleryImage" name="galleryImage" placeholder="Image"><?php echo $galleryImage; ?></textarea>
+                    <label for="galleryImage">Image *</label><br>
+                    <input class="form-control" id="galleryImage" name="galleryImage" placeholder="Image" value="<?php echo $galleryImage; ?>" readonly>
                 </div>
                 <div class="form-group">
                     <!-- galleryID senden -->

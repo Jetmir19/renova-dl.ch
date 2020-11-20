@@ -1,18 +1,13 @@
 <?php
 
 if (isset($_POST["dbEdit"])) {
-    // // Posted data 
-    // $postArray = [
-    //     'categoryID' => (int) $_POST["dbEdit"],
-    //     'categoryName' => htmlspecialchars(trim($_POST["categoryName"])),
-    //     'categoryDescription' => htmlspecialchars(trim($_POST["categoryDescription"]))
-    // ];
-    // // Update in Database
-    // $update = updateGallery($postArray);
-
-    // This should be removed in production
-    $update = "The edit functionality is still in development.";
-
+    // Posted data 
+    $postArray = [
+        'galleryTitle' => htmlspecialchars(trim($_POST["galleryTitle"])),
+        'galleryUserID' => $_SESSION["userID"]
+    ];
+    // Update in Database
+    $update = updateImage($postArray);
     // Return results
     echo $update;
     exit;

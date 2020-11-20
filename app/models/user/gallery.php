@@ -7,7 +7,9 @@ function getGalleryPhotosFromDB($limit = 12)
 {
     global $db;
 
-    $sql = "SELECT * FROM gallery LIMIT $limit";
+    $sql = "SELECT * FROM gallery 
+    ORDER BY galleryDate DESC
+    LIMIT $limit";
 
     $stmt = $db->query($sql);
 

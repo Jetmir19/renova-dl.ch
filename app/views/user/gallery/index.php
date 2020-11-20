@@ -19,7 +19,7 @@
 
             // for ($i = 0; $i < count($data['gallery']); $i++) {
             //     echo '<div class="mb-3 pics animation all 2">
-            //                 <img class="img-fluid galleryImg" src="' . APPURL . '/public/img/gallery/' . $data['gallery'][$i]['source'] . '" alt="">
+            //                 <img class="img-fluid galleryImg" src="' . APPURL . '/public/img/gallery/' . $data['gallery'][$i]['galleryImage'] . '" alt="">
             //         </div>';
             // }
 
@@ -28,7 +28,7 @@
             if ($data['gallery']) {
                 foreach ($data['gallery'] as $gallery) {
                     echo '<div class="mb-3 pics animation all 2">
-                        <img class="img-fluid galleryImg" src="' . APPURL . '/public/img/gallery/' . $gallery['source'] . '" alt="">
+                        <img class="img-fluid galleryImg" src="' . APPURL . '/public/uploads/gallery/' . $gallery['galleryImage'] . '" alt="">
                     </div>';
                 }
             } else {

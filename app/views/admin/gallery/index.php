@@ -64,7 +64,7 @@ if (!isset($_GET['action'])) {
                         echo "<tr>
                             <th scope='row'>$counter</th>
                             <td>
-                            <img src='" . APPURL . "/public/img/gallery/" . $row['galleryImage'] . "' width='70px' height='80px'>
+                            <img src='" . APPURL . "/public/uploads/gallery/" . $row['galleryImage'] . "' width='70px' height='80px'>
                             </td>
                             <td>$row[userName]</td>
                             <td>$row[galleryTitle]</td>

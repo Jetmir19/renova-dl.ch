@@ -28,6 +28,10 @@ defined("APPURL")
 defined("APPROOT")
     or define("APPROOT", dirname(dirname(__DIR__)));
 
+/* UPLOAD PATH */
+defined('UPLOAD_PATH')
+    or define('UPLOAD_PATH', APPROOT . '/public/uploads/gallery');
+
 defined("LIBRARY_PATH")
     or define("LIBRARY_PATH", dirname(__DIR__) . '/library');
 

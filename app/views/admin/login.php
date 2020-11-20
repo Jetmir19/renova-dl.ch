@@ -88,7 +88,7 @@ if (isset($_POST["email"])) {
         <form action="/" id="formLogin" class="form-signin">
             <div class="text-center mb-3">
                 <!--<img class="mb-1" src="<?php echo APPURL; ?>/public/img/favicon.png" alt="" height="72">-->
-                <h1> INTER TRANS </h1>
+                <h1> <?php echo SITE_NAME; ?> </h1>
                 <hr>
             </div>
             <div class="form-group">
@@ -103,7 +103,7 @@ if (isset($_POST["email"])) {
             <!-- Output login_results -->
             <div id="login_result"></div>
         </form>
-        <p class="text-center"><a href="<?php echo APPURL; ?>">← Go back to renova-sarl.ch</a></p>
+        <p class="text-center"><a href="<?php echo APPURL; ?>">← Go back to <?php echo SITE_NAME; ?></a></p>
     </div>
     <!-- MAIN Content END -->
 

@@ -119,7 +119,7 @@
 
             for ($i = 0; $i < count($data); $i++) {
                 echo '<div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-4">
-                            <img class="img-fluid img-thumbnail galleryImg" src="' . APPURL . '/public/img/gallery/' . $data[$i]['source'] . '" alt="">
+                            <img class="img-fluid img-thumbnail galleryImg" src="' . APPURL . '/public/uploads/gallery/' . $data[$i]['galleryImage'] . '" alt="">
                     </div>';
             }
             ?>

@@ -1,14 +1,10 @@
 <?php
 
 if (isset($_POST["dbDelete"])) {
-    // // Posted data 
-    // $categoryID = (int) $_POST["dbDelete"];
-    // // Delete from Database
-    // $delete = deleteGallery($categoryID);
-
+    // Posted data 
+    $galleryID = (int) $_POST["dbDelete"];
     // This should be removed in production
-    $delete = "The edit functionality is still in development.";
-
+    $delete = deleteImage($galleryID);
     // Return results
     echo $delete;
     exit;
