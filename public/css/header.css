@@ -1,0 +1,36 @@
+.header-logo {
+    position: relative;
+    z-index: 1;
+}
+
+.site-branding {
+    /* padding: 35px 50px 35px 15px; */
+    padding: 35px 213px 32px 0px;
+    position: relative;
+}
+
+.site-branding::before {
+    background: #ffffff none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    left: -800px;
+    position: absolute;
+    top: 0;
+    width: 1000px;
+}
+
+.site-branding::after {
+    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #ffffff;
+    border-style: solid;
+    border-width: 56px 0 50px 30px;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 150px;
+    top: 0;
+    width: 0;
+}
+
+.header-el {
+    background-color: #1d2736 !important;
+}

@@ -433,13 +433,43 @@ section {
 
 /* Medium devices (tablets, 768px and up) */
 
-@media (min-width: 768px) {}
+@media (max-width: 768px) {
+  /* header */
+  .header-logo {
+    background-color: #fff;
+    padding: 20px 20px;
+    text-align: center;
+    position: absolute;
+  }
+  .site-branding {
+    position: relative;
+    padding: 0 !important;
+  }
+  .site-branding::before {
+    position: unset !important;
+    width: 100%;
+  }
+  .site-branding::after {
+    content: unset !important;
+  }
+  .header-logo {
+    padding: 34px 46px;
+  }
+}
 
 /* Large devices (desktops, 992px and up) */
 
 @media (min-width: 992px) {
   .dropdown-menu {
     left: -75%;
+  }
+  /* Header */
+  .site-branding {
+    padding: 35px 20px 35px 15px;
+    position: relative;
+  }
+  .site-branding::before {
+    margin-bottom: 6px;
   }
 }
 
@@ -469,6 +499,9 @@ section {
   }
   .mehr-button {
     font-size: 1.25rem;
+  }
+  .site-branding::after {
+    content: unset !important;
   }
 }
 

@@ -17,12 +17,12 @@
 		echo $title ?? "Renova DL";
 		?>
 	</title>
-	<!-- Font Awesome Icons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="<?php echo APPURL; ?>/public/css/bootstrap.min.css" />
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<?php echo APPURL; ?>/public/css/styles.css" />
+	<link rel="stylesheet" href="<?php echo APPURL; ?>/public/css/header.css" />
 	<!-- Favicon for All Devices -->
 	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo APPURL; ?>/public/favicon/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo APPURL; ?>/public/favicon/favicon-32x32.png">
@@ -36,18 +36,50 @@
 	<!-- Button to go on TOP end -->
 
 	<!-- TelefonBar -->
-	<div class="tel-bar bg-dark">
+	<div class="tel-bar header-el">
 		<div class="container">
-			<ul class="tel-bar-list">
-				<li><i class="fas fa-phone"></i>&nbsp;<a href="tel:+000 000 000 00">+000 000 000 00</a></li>
-				<li><i class="fas fa-envelope"></i>&nbsp;<a href="mailto:office@renova-sarl.ch">office@renova-sarl.ch</a></li>
-			</ul>
+
+			<div class="row">
+				<div class="site-branding col-md-6 col-lg-4 col-sm-12 header-el justify-content-center text-center">
+					<div class="header-logo">
+						<a href="<?php echo APPURL; ?>"><img src="<?php echo APPURL; ?>/public/img/logo/1.png" alt="" /></a>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-lg-4 col-sm-12 header-el d-none d-md-block d-lg-block align-self-center border">
+					<div class="header-text">
+						<div class="header-info text-white">
+							<i class="fas fa-phone-alt"></i>
+							<span class="phone">+00-1202-235</span>
+							<span class="gmail">hmend@gmail.com</span>
+						</div>
+					</div>
+					<div class="header-text">
+						<div class="header-info text-white">
+							<i class="fas fa-home"></i>
+							<span class="phone">2020 Chelopek Bervenice,</span>
+							<span class="gmail">Tetove,NM</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-sm-12 header-el d-md-none d-sm-block d-lg-block align-self-center py-3">
+					<div class="d-flex justify-content-around">
+						<a href="#"><i class="fab fa-facebook-f text-white"></i></a>
+						<a href="#"><i class="fab fa-vimeo text-white"></i></a>
+						<a href="#"><i class="fab fa-tumblr text-white"></i></a>
+						<a href="#"><i class="fab fa-pinterest-p text-white"></i></a>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
 	<!-- Main div START -->
 	<div class="main">
 
+		<!-- Navigation -->
 		<!-- Navigation -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top py-3">
 			<div class="container">
