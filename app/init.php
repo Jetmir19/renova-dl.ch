@@ -18,6 +18,7 @@ require_once MODELS_PATH . "/user/content.php";
 require_once MODELS_PATH . "/user/gallery.php";
 // Admin Models
 require_once MODELS_PATH . "/admin/categories.php";
+require_once MODELS_PATH . "/admin/categoriesSub.php";
 require_once MODELS_PATH . "/admin/gallery.php";
 require_once MODELS_PATH . "/admin/pages.php";
 require_once MODELS_PATH . "/admin/users.php";

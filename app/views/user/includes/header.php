@@ -23,6 +23,9 @@
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<?php echo APPURL; ?>/public/css/styles.css" />
 	<link rel="stylesheet" href="<?php echo APPURL; ?>/public/css/header.css" />
+	<link rel="stylesheet" href="<?php echo APPURL; ?>/public/css/gallery.css" />
+	<link rel="stylesheet" href="<?php echo APPURL; ?>/public/css/footer.css" />
+	<link rel="stylesheet" href="<?php echo APPURL; ?>/public/css/services.css" />
 	<!-- Favicon for All Devices -->
 	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo APPURL; ?>/public/favicon/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo APPURL; ?>/public/favicon/favicon-32x32.png">
@@ -35,40 +38,49 @@
 	<span onclick="scrollTopBtn()" id="scrollTopBtn" title=""><i class="fas fa-arrow-up fa-5x"></i></span>
 	<!-- Button to go on TOP end -->
 
-	<!-- TelefonBar -->
-	<div class="tel-bar header-el">
+	<!-- Header -->
+	<div class="header-el">
 		<div class="container">
 
 			<div class="row">
-				<div class="site-branding col-md-6 col-lg-4 col-sm-12 header-el justify-content-center text-center">
+				<div class="site-branding col-md-6 col-lg-4 col-sm-12 justify-content-center">
 					<div class="header-logo">
-						<a href="<?php echo APPURL; ?>"><img src="<?php echo APPURL; ?>/public/img/logo/1.png" alt="" /></a>
+						<a href="<?php echo APPURL; ?>">
+							<img src="<?php echo APPURL; ?>/public/img/logo/2-psd.png" alt="" /></a>
 					</div>
 				</div>
 
-				<div class="col-md-6 col-lg-4 col-sm-12 header-el d-none d-md-block d-lg-block align-self-center border">
-					<div class="header-text">
-						<div class="header-info text-white">
-							<i class="fas fa-phone-alt"></i>
-							<span class="phone">+00-1202-235</span>
-							<span class="gmail">hmend@gmail.com</span>
+				<div class="col-md-6 col-lg-6 col-sm-12 d-none d-md-block d-lg-block align-self-center">
+					<div class="d-flex">
+						<div class="header-text d-flex align-items-center">
+							<div class="header-icon">
+								<i class="fas fa-phone-alt"></i>
+								<span class="right-line"></span>
+							</div>
+							<div class="header-info text-white">
+								<div class="phone">+00-1202-235</div>
+								<div class="gmail text-muted">hmend@gmail.com</div>
+							</div>
 						</div>
-					</div>
-					<div class="header-text">
-						<div class="header-info text-white">
-							<i class="fas fa-home"></i>
-							<span class="phone">2020 Chelopek Bervenice,</span>
-							<span class="gmail">Tetove,NM</span>
+						<div class="header-text d-flex align-items-center">
+							<div class="header-icon">
+								<i class="fas fa-home"></i>
+								<span class="right-line"></span>
+							</div>
+							<div class="header-info text-white">
+								<div class="phone">2020 Chelopek Bervenice,</div>
+								<div class="gmail text-muted">Tetove,NM</div>
+							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-lg-4 col-sm-12 header-el d-md-none d-sm-block d-lg-block align-self-center py-3">
-					<div class="d-flex justify-content-around">
-						<a href="#"><i class="fab fa-facebook-f text-white"></i></a>
-						<a href="#"><i class="fab fa-vimeo text-white"></i></a>
-						<a href="#"><i class="fab fa-tumblr text-white"></i></a>
-						<a href="#"><i class="fab fa-pinterest-p text-white"></i></a>
+				<div class="col-lg-2 col-sm-12 d-md-none d-sm-block d-lg-block align-self-center py-3">
+					<div class="d-flex justify-content-around justify-content-md-between">
+						<a href="#"><i class="fab fa-facebook-f text-white mr-2"></i></a>
+						<a href="#"><i class="fab fa-vimeo text-white mr-2"></i></a>
+						<a href="#"><i class="fab fa-tumblr text-white mr-2"></i></a>
+						<a href="#"><i class="fab fa-pinterest-p text-white mr-2"></i></a>
 					</div>
 				</div>
 			</div>
@@ -80,18 +92,19 @@
 	<div class="main">
 
 		<!-- Navigation -->
-		<!-- Navigation -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top py-3">
 			<div class="container">
-				<a class="navbar-brand" href="<?php echo APPURL; ?>/">
-					<span class="big-letters">Company Logo</span>
-				</a>
 				<button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="sr-only">Toggle navigation</span>
 				</button>
+				<div class="navbar-brand">
+					<!-- <span class="big-letters">Company Logo</span> -->
+					<i class="far fa-calendar-check text-muted"></i>
+					<a class="make-appointment" href="#"> MAKE APPOINTMENT</a>
+				</div>
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<hr id="hr-divider">
 					<ul class="navbar-nav ml-auto">
@@ -112,6 +125,8 @@
 						<li class="nav-item">
 							<a class="nav-link" href="<?php echo APPURL; ?>/contact">KONTAKT</a>
 						</li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<?php

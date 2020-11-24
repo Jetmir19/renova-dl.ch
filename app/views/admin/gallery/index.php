@@ -16,7 +16,7 @@ if (!isset($_GET['action'])) {
         </div>
     </div>
 
-    <hr class="border-top">
+    <hr class="border-top mt-1">
 
     <!-- TOTAL IMAGES -->
     <div class="table-responsive-sm">
@@ -47,8 +47,9 @@ if (!isset($_GET['action'])) {
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Image</th>
-                    <th scope="col">User</th>
                     <th scope="col">Title</th>
+                    <th scope="col">Subcategory</th>
+                    <th scope="col">User</th>
                     <th scope="col">Created Time</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -66,8 +67,9 @@ if (!isset($_GET['action'])) {
                             <td>
                             <img src='" . APPURL . "/public/uploads/gallery/" . $row['galleryImage'] . "' width='70px' height='80px'>
                             </td>
-                            <td>$row[userName]</td>
                             <td>$row[galleryTitle]</td>
+                            <td>$row[subCategoryName]</td>
+                            <td>$row[userName]</td>
                             <td>$row[galleryDate]</td>
                             <td>
                             <a class='btn btn-link' href='?action=edit&id=$row[galleryID]'>
@@ -81,7 +83,7 @@ if (!isset($_GET['action'])) {
                     }
                 } else {
                     echo "<tr>
-                        <td colspan='6'><h1 class='text-info text-center'>No Records</h1></td>
+                        <td colspan='7'><h1 class='text-info text-center'>No Records</h1></td>
                     </tr>";
                 }
                 ?>

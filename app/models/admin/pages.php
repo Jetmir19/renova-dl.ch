@@ -6,9 +6,11 @@ function getPages()
 {
     global $db;
 
-    $sql = "SELECT * FROM pages 
-    INNER JOIN category ON pageCategoryID=categoryID
-    INNER JOIN user ON pageUserID=userID
+    $sql = "SELECT * FROM pages AS p
+    INNER JOIN (SELECT subCategoryID, CategoryID, subCategoryName FROM sub_category) AS sc ON sc.subCategoryID=p.subCategoryID
+    LEFT JOIN (SELECT categoryID, categoryName FROM category) as c ON c.categoryID=sc.categoryID
+    RIGHT JOIN (SELECT userID, userName FROM user) as u ON u.userID=p.userID
+    WHERE p.pageID IS NOT NULL
     ORDER BY pageName DESC";
 
     $stmt = $db->query($sql);
@@ -29,7 +31,7 @@ function getPageById($id)
     global $db;
 
     $sql = "SELECT * FROM pages 
-    INNER JOIN category ON pageCategoryID=categoryID
+    INNER JOIN sub_category ON pages.subCategoryID=sub_category.subCategoryID
     WHERE pageID=:id";
 
     $stmt = $db->prepare($sql);
@@ -68,9 +70,9 @@ function insertPage($postArray)
         $ok = false;
         $output .= "Please choose a Language!<br>";
     }
-    if (empty($postArray["pageCategoryID"])) {
+    if (empty($postArray["subCategoryID"])) {
         $ok = false;
-        $output .= "Please choose Category!<br>";
+        $output .= 'Please choose Subcategory or <a href="' . APPURL . '/admin/categories?action=add&type=sub">create new </a><br>';
     }
     if (empty($postArray["pageContent"])) {
         $ok = false;
@@ -80,8 +82,8 @@ function insertPage($postArray)
     $sql = "INSERT INTO pages
     (
         pageName,
-        pageUserID, 
-        pageCategoryID, 
+        userID, 
+        subCategoryID, 
         pageTitle,
         pageLanguage, 
         pageContent
@@ -89,8 +91,8 @@ function insertPage($postArray)
     VALUES
     (
         :pageName,
-        :pageUserID, 
-        :pageCategoryID, 
+        :userID, 
+        :subCategoryID, 
         :pageTitle,
         :pageLanguage, 
         :pageContent
@@ -99,8 +101,8 @@ function insertPage($postArray)
     $stmt = $db->prepare($sql);
 
     $stmt->bindParam(":pageName", $postArray['pageName']);
-    $stmt->bindParam(":pageUserID", $postArray['pageUserID']);
-    $stmt->bindParam(":pageCategoryID", $postArray['pageCategoryID']);
+    $stmt->bindParam(":userID", $postArray['userID']);
+    $stmt->bindParam(":subCategoryID", $postArray['subCategoryID']);
     $stmt->bindParam(":pageTitle", $postArray['pageTitle']);
     $stmt->bindParam(":pageLanguage", $postArray['pageLanguage']);
     $stmt->bindParam(":pageContent", $postArray['pageContent']);
@@ -140,7 +142,7 @@ function updatePage($postArray)
 
     $sql = "UPDATE pages SET
                 pageName=:pageName, 
-                pageCategoryID=:pageCategoryID, 
+                subCategoryID=:subCategoryID, 
                 pageTitle=:pageTitle, 
                 pageLanguage=:pageLanguage, 
                 pageContent=:pageContent,
@@ -151,7 +153,7 @@ function updatePage($postArray)
 
     $stmt->bindParam(":pageID", $postArray['pageID']);
     $stmt->bindParam(":pageName", $postArray['pageName']);
-    $stmt->bindParam(":pageCategoryID", $postArray['pageCategoryID']);
+    $stmt->bindParam(":subCategoryID", $postArray['subCategoryID']);
     $stmt->bindParam(":pageTitle", $postArray['pageTitle']);
     $stmt->bindParam(":pageLanguage", $postArray['pageLanguage']);
     $stmt->bindParam(":pageContent", $postArray['pageContent']);

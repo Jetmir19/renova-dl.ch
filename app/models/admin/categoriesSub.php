@@ -1,14 +1,15 @@
 <?php
 
 # ---------------------------------------------------
-function getCategories()
+function getSubCategories()
 # ---------------------------------------------------
 {
     global $db;
 
-    $sql = "SELECT * FROM category as c
-    INNER JOIN (SELECT userID, userName FROM user) as u ON u.userID=c.userID
-    ORDER BY categoryDate DESC";
+    $sql = "SELECT * FROM sub_category sc
+    INNER JOIN (SELECT categoryID, categoryName FROM category) as c ON c.categoryID=sc.categoryID
+    LEFT JOIN (SELECT userID, userName FROM user) as u ON u.userID=sc.userID
+    ORDER BY subCategoryDate DESC";
 
     $stmt = $db->query($sql);
 
@@ -22,15 +23,15 @@ function getCategories()
 }
 
 # ---------------------------------------------------
-function getCategoryById($id)
+function getSubCategoryById($id)
 # ---------------------------------------------------
 {
     global $db;
 
-    $sql = "SELECT * FROM category 
+    $sql = "SELECT * FROM sub_category 
     INNER JOIN user 
-    ON category.userID=user.userID 
-    WHERE category.categoryID=:id";
+    ON sub_category.userID=user.userID 
+    WHERE sub_category.subCategoryID=:id";
 
     $stmt = $db->prepare($sql);
 
@@ -48,7 +49,7 @@ function getCategoryById($id)
 }
 
 # ---------------------------------------------------
-function insertCategory($postArray)
+function insertSubCategory($postArray)
 # ---------------------------------------------------
 {
     global $db;
@@ -56,33 +57,40 @@ function insertCategory($postArray)
     $output = '';
 
     // Validation
-    if (empty($postArray['categoryName'])) {
+    if (empty($postArray['subCategoryName'])) {
         $ok = false;
         $output .= "Name can not be empty!<br>";
     }
-    if (empty($postArray['categoryDescription'])) {
+    if (empty($postArray["categoryID"])) {
+        $ok = false;
+        $output .= 'Please choose Category or <a href="' . APPURL . '/admin/categories?action=add">create new </a><br>';
+    }
+    if (empty($postArray['subCategoryDescription'])) {
         $ok = false;
         $output .= "Please insert a description!<br>";
     }
 
-    $sql = "INSERT INTO category
+    $sql = "INSERT INTO sub_category
 		(
-			categoryName,
+			subCategoryName,
+            categoryID,
 			userID,
-			categoryDescription
+			subCategoryDescription
 		)
 		VALUES
 		(
-			:categoryName,
+			:subCategoryName,
+            :categoryID,
 			:userID,
-			:categoryDescription
+			:subCategoryDescription
         )";
 
     $stmt = $db->prepare($sql);
 
-    $stmt->bindParam(":categoryName", $postArray['categoryName']);
+    $stmt->bindParam(":subCategoryName", $postArray['subCategoryName']);
+    $stmt->bindParam(":categoryID", $postArray['categoryID']);
     $stmt->bindParam(":userID", $postArray['userID']);
-    $stmt->bindParam(":categoryDescription", $postArray['categoryDescription']);
+    $stmt->bindParam(":subCategoryDescription", $postArray['subCategoryDescription']);
 
     if ($ok === true) {
         if ($stmt->execute()) {
@@ -96,7 +104,7 @@ function insertCategory($postArray)
 }
 
 # ---------------------------------------------------
-function updateCategory($postArray)
+function updateSubCategory($postArray)
 # ---------------------------------------------------
 {
     global $db;
@@ -104,24 +112,24 @@ function updateCategory($postArray)
     $output = '';
 
     // Validation
-    if (empty($postArray['categoryName'])) {
+    if (empty($postArray['subCategoryName'])) {
         $ok = false;
         $output .= "Name can not be empty!<br>";
     }
-    if (empty($postArray['categoryDescription'])) {
+    if (empty($postArray['subCategoryDescription'])) {
         $ok = false;
         $output .= "Please insert a description!<br>";
     }
 
-    $sql = "UPDATE category 
-    SET categoryName=:categoryName, categoryDescription=:categoryDescription
-    WHERE categoryID=:categoryID";
+    $sql = "UPDATE sub_category 
+    SET subCategoryName=:subCategoryName, subCategoryDescription=:subCategoryDescription
+    WHERE subCategoryID=:subCategoryID";
 
     $stmt = $db->prepare($sql);
 
-    $stmt->bindParam(":categoryID", $postArray['categoryID']);
-    $stmt->bindParam(":categoryName", $postArray['categoryName']);
-    $stmt->bindParam(":categoryDescription", $postArray['categoryDescription']);
+    $stmt->bindParam(":subCategoryID", $postArray['subCategoryID']);
+    $stmt->bindParam(":subCategoryName", $postArray['subCategoryName']);
+    $stmt->bindParam(":subCategoryDescription", $postArray['subCategoryDescription']);
 
     if ($ok === true) {
         if ($stmt->execute()) {
@@ -135,18 +143,18 @@ function updateCategory($postArray)
 }
 
 # ---------------------------------------------------
-function deleteCategory($categoryID)
+function deleteSubCategory($subCategoryID)
 # ---------------------------------------------------
 {
     global $db;
     $output = '';
 
-    $sql = "DELETE FROM category
-    WHERE categoryID=:categoryID";
+    $sql = "DELETE FROM sub_category
+    WHERE subCategoryID=:subCategoryID";
 
     $stmt = $db->prepare($sql);
 
-    $stmt->bindParam(":categoryID", $categoryID);
+    $stmt->bindParam(":subCategoryID", $subCategoryID);
 
     if ($stmt->execute()) {
         $output .= "success";

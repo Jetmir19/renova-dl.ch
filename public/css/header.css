@@ -1,11 +1,22 @@
+
+.header-el {
+    background-color: #1d2736 !important;
+}
+
 .header-logo {
     position: relative;
     z-index: 1;
+    padding-left: 8px;
 }
+
+/* .header-logo img {
+    width: 250px;
+    height: 91px;
+} */
 
 .site-branding {
     /* padding: 35px 50px 35px 15px; */
-    padding: 35px 213px 32px 0px;
+    padding: 15px 125px 15px 5px;
     position: relative;
 }
 
@@ -13,24 +24,55 @@
     background: #ffffff none repeat scroll 0 0;
     bottom: 0;
     content: "";
-    left: -800px;
+    left: -940px;
     position: absolute;
     top: 0;
-    width: 1000px;
+    width: 1220px;
 }
 
 .site-branding::after {
     border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #ffffff;
     border-style: solid;
-    border-width: 56px 0 50px 30px;
+    border-width: 58px 0 53px 24px;
     content: "";
     height: 0;
     position: absolute;
-    right: 150px;
+    right: 76px;
     top: 0;
     width: 0;
 }
 
-.header-el {
-    background-color: #1d2736 !important;
+/* TelefonBar */
+
+.header-text {
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin-right: 10px;
+}
+
+.header-text:first-child {
+    padding-right: 3em;
+}
+
+.header-text .header-icon {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.header-text .header-icon .right-line {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 400;
+    border-right: 1px solid #fff;
+    margin: 0 10px;
+    vertical-align: top;
+}
+
+.make-appointment {
+    padding: 30px 0;
+}
+
+.make-appointment {
+    padding: 30px 0;
 }

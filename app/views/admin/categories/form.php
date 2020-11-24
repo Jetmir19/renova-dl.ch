@@ -11,23 +11,66 @@ if (isset($_GET['action'])) {
             <?php
             ########################## ADD START ###########################
             if ($_GET['action'] == 'add') {
+                // Dinamic Title START
+                if (isset($_GET['type']) && $_GET['type'] == 'sub') {
+                    echo '<h5>Add new Subcategory</h5>
+                    <div class="form-group text-left">
+                        <label for="subCategoryName">Subcategory Name</label>
+                        <input type="text" class="form-control" id="subCategoryName" name="subCategoryName" placeholder="Name">
+                    </div>';
+                } else {
+                    echo '<h5>Add new Category</h5>
+                    <div class="form-group text-left">
+                        <label for="categoryName">Category Name</label>
+                        <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Name">
+                    </div>';
+                }
+                // Dinamic Title END
+                // Choose Category Secion START
+                if (isset($_GET['type']) && $_GET['type'] == 'sub') {
+                    echo '<div class="form-group text-left">';
+                    echo '<label for="categoryID">Category</label>';
+                    echo '<select id="categoryID" name="categoryID" class="form-control">';
+                    echo '<option class="select_hide" disabled selected>Choose Category</option>';
+                    $categories = getCategories();
+                    foreach ($categories as $cat) {
+                        echo "<option value='$cat[categoryID]'>$cat[categoryName]</option>";
+                    }
+                    echo '</select>';
+                    echo '</div>';
+                }
+                // Choose Category Secion END
             ?>
-                <h5>Add new Category</h5>
-                <div class="form-group text-left">
-                    <label for="categoryName">Category Name</label>
-                    <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Name">
-                </div>
                 <div class="form-group text-left">
                     <label for="categoryName">User</label>
                     <input type="text" class="form-control" id="userName" name="userName" placeholder="Name" value="<?php echo $_SESSION['userName']; ?>" readonly>
                 </div>
-                <div class="form-group text-left">
-                    <label for="categoryDescription">Description</label>
-                    <textarea class="form-control" rows="5" id="categoryDescription" name="categoryDescription" placeholder="Description"></textarea>
-                </div>
+                <?php
+                // Dinamic Description START
+                if (isset($_GET['type']) && $_GET['type'] == 'sub') {
+                    echo '<div class="form-group text-left">
+                        <label for="subCategoryDescription">Description</label>
+                        <textarea class="form-control" rows="5" id="subCategoryDescription" name="subCategoryDescription" placeholder="Description"></textarea>
+                    </div>';
+                } else {
+                    echo '<div class="form-group text-left">
+                        <label for="categoryDescription">Description</label>
+                        <textarea class="form-control" rows="5" id="categoryDescription" name="categoryDescription" placeholder="Description"></textarea>
+                    </div>';
+                }
+                // Dinamic Description END
+                ?>
                 <div class="form-group">
                     <!-- Input hidden below will be posted with the form -->
-                    <input type="hidden" id="dbInsert" name="dbInsert" value="dbInsert">
+                    <?php
+                    // Dinamic hidden POST START
+                    if (isset($_GET['type']) && $_GET['type'] == 'sub') {
+                        echo '<input type="hidden" id="dbInsertSub" name="dbInsertSub" value="dbInsertSub">';
+                    } else {
+                        echo '<input type="hidden" id="dbInsertCat" name="dbInsertCat" value="dbInsertCat">';
+                    }
+                    // Dinamic hidden POST END
+                    ?>
                     <input type="submit" id="btnAddCategory" name="btnAddCategory" class="btn btn-primary btn-lg btn-block" value="Save" />
                     <a href="<?php echo APPURL . "/admin/categories"; ?>" type="button" class="btn btn-secondary btn-lg btn-block">Cancel</a>
                 </div>
@@ -56,7 +99,7 @@ if (isset($_GET['action'])) {
                     <textarea class="form-control" rows="5" id="categoryDescription" name="categoryDescription" placeholder="Description"><?php echo $categoryDescription; ?></textarea>
                 </div>
                 <div class="form-group">
-                    <!-- categoryID senden -->
+                    <!-- categoryID send -->
                     <input type="hidden" id="dbEdit" name="dbEdit" value="<?php echo $_GET['id']; ?>">
                     <input type="submit" id="btnEditCategory" name="btnEditCategory" class="btn btn-primary btn-lg btn-block" value="Save" />
                     <a href="<?php echo APPURL . "/admin/categories"; ?>" type="button" class="btn btn-secondary btn-lg btn-block">Cancel</a>

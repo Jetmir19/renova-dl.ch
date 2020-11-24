@@ -32,12 +32,12 @@ if (isset($_GET['action'])) {
                 </div>
                 <div class="form-group text-left">
                     <?php
-                    echo "<label for='pageCategoryID'>Category</label>";
-                    echo "<select id='pageCategoryID' name='pageCategoryID' class='form-control'>";
-                    echo "<option class='select_hide' disabled selected>Choose Category</option>";
-                    $categories = getCategories();
-                    foreach ($categories as $cat) {
-                        echo "<option value='$cat[categoryID]'>$cat[categoryName]</option>";
+                    echo "<label for='subCategoryID'>Subcategory</label>";
+                    echo "<select id='subCategoryID' name='subCategoryID' class='form-control'>";
+                    echo "<option class='select_hide' disabled selected>Choose Subcategory</option>";
+                    $subCategories = getSubCategories();
+                    foreach ($subCategories as $cat) {
+                        echo "<option value='$cat[subCategoryID]'>$cat[subCategoryName]</option>";
                     }
                     echo "</select>";
                     ?>
@@ -61,8 +61,8 @@ if (isset($_GET['action'])) {
                 echo "<h5>Seite Bearbeiten</h5><span>ID: $_GET[id]</span>";
                 $row = getPageById($_GET['id']);
                 $pageName = $row["pageName"];
-                $pageCategoryID = $row["categoryID"];
-                $categoryName = $row["categoryName"];
+                $subCategoryID = $row["subCategoryID"];
+                $subCategoryName = $row["subCategoryName"];
                 $pageTitle = $row["pageTitle"];
                 $pageLanguage = $row["pageLanguage"];
                 $pageContent = $row["pageContent"];
@@ -95,17 +95,17 @@ if (isset($_GET['action'])) {
                 </div>
                 <div class="form-group text-left">
                     <?php
-                    echo "<label for='pageCategoryID'>Category</label>";
-                    echo "<select id='pageCategoryID' name='pageCategoryID' class='form-control'>";
+                    echo "<label for='subCategoryID'>Subcategory</label>";
+                    echo "<select id='subCategoryID' name='subCategoryID' class='form-control'>";
                     echo "<option class='select_hide' disabled selected>Choose Category</option>";
-                    $categories = getCategories();
-                    foreach ($categories as $cat) {
-                        if ($cat['categoryName'] == $categoryName) {
+                    $subCategories = getSubCategories();
+                    foreach ($subCategories as $cat) {
+                        if ($cat['subCategoryName'] == $subCategoryName) {
                             $selected = "selected";
                         } else {
                             $selected = "";
                         }
-                        echo "<option value='$cat[categoryID]' $selected>$cat[categoryName]</option>";
+                        echo "<option value='$cat[subCategoryID]' $selected>$cat[subCategoryName]</option>";
                     }
                     echo "</select>";
                     ?>

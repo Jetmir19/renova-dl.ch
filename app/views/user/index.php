@@ -52,30 +52,62 @@
 <!-- Content section2 -->
 <section class="py-5">
     <div class="container">
-        <h1 class="font-weight-bold"><span class="black-border">NE</span> OFROJMË</h1>
+        <h1 class="font-weight-bold"><span class="black-border">SER</span>VICES</h1>
         <hr />
-        <p class="lead">
-            Ne mbajmë përgjegjësi për mallrat nga pika e ngarkimit deri në pikën e fundit të shkarkimit. Për transportin e mallrave me rrugë lidhëse vajtje ardhje ne ofrojmë çmime deri në 40% më lirë se konkurrenca.
-        </p>
-        <h4>Shërbimet kryesore që ne ofrojmë janë: </h4>
-        <ul>
-            <li>Transport mallrash brenda Maqedonisë së Veriut</li>
-            <li>Logjistikë për transport brenda dhe jashtë vendit</li>
-            <li>Transport Ndërkombëtar</li>
-        </ul>
-
-        <div class="row text-center text-lg-left mt-4">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-4">
-                <img class="img-fluid img-thumbnail galleryImg" src="<?php echo APPURL; ?>/public/img/ne_ofrojme1.jpg" alt="">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="box">
+                    <div class="our-services settings">
+                        <div class="icon"> <img src="https://i.imgur.com/6NKPrhO.png"> </div>
+                        <h4>Renovim shtëpive</h4>
+                        <p>Moler Graniti ofron produkte për ngjyrosje, izolim dhe fasadim të shtëpisë, dekorime, knauf. Punojmë me porosi gipser moler të specialzuar.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-4">
-                <img class="img-fluid img-thumbnail galleryImg" src="<?php echo APPURL; ?>/public/img/ne_ofrojme2.jpg" alt="">
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="box">
+                    <div class="our-services speedup">
+                        <div class="icon"> <img src="https://i.imgur.com/KMbnpFF.png"> </div>
+                        <h4>Moelerim</h4>
+                        <p>Moler Graniti ofron produkte për ngjyrosje, izolim dhe fasadim të shtëpisë, dekorime, knauf. Punojmë me porosi gipser moler të specialzuar.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-4">
-                <img class="img-fluid img-thumbnail galleryImg" src="<?php echo APPURL; ?>/public/img/ne_ofrojme3.jpg" alt="">
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="box">
+                    <div class="our-services privacy">
+                        <div class="icon"> <img src="https://i.imgur.com/AgyneKA.png"> </div>
+                        <h4>Izolim</h4>
+                        <p>Moler Graniti ofron produkte për ngjyrosje, izolim dhe fasadim të shtëpisë, dekorime, knauf. Punojmë me porosi gipser moler të specialzuar. </p>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-4">
-                <img class="img-fluid img-thumbnail galleryImg" src="<?php echo APPURL; ?>/public/img/ne_ofrojme4.jpg" alt="">
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="box">
+                    <div class="our-services backups">
+                        <div class="icon"> <img src="https://i.imgur.com/vdH9LKi.png"> </div>
+                        <h4>Fasdaim</h4>
+                        <p>Moler Graniti ofron produkte për ngjyrosje, izolim dhe fasadim të shtëpisë, dekorime, knauf. Punojmë me porosi gipser moler të specialzuar. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="box">
+                    <div class="our-services ssl">
+                        <div class="icon"> <img src="https://i.imgur.com/v6OnUqu.png"> </div>
+                        <h4>Rregullimin e parqeve</h4>
+                        <p>Moler Graniti ofron produkte për ngjyrosje, izolim dhe fasadim të shtëpisë, dekorime, knauf. Punojmë me porosi gipser moler të specialzuar.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="box">
+                    <div class="our-services database">
+                        <div class="icon"> <img src="https://i.imgur.com/VzjZw9M.png"> </div>
+                        <h4>Rregullimin e parqeve</h4>
+                        <p>Moler Graniti ofron produkte për ngjyrosje, izolim dhe fasadim të shtëpisë, dekorime, knauf. Punojmë me porosi gipser moler të specialzuar.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

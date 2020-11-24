@@ -12,7 +12,9 @@ if (!(isset($_GET['action']))) {
             <h3>Users</h3>
         </div>
     </div>
-    <hr class="border-top">
+
+    <hr class="border-top mt-1">
+
     <div class="alert alert-info" role="alert">
         There are always three static users in the administration. It does not include adding a new user or deleting user, but updating the password or email and changing the user role is possible.
     </div>

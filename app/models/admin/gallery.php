@@ -7,8 +7,9 @@ function getImages()
     global $db;
 
     $sql = "SELECT * FROM gallery
-    INNER JOIN user 
-    ON galleryUserID=userID 
+    INNER JOIN sub_category ON gallery.subCategoryID=sub_category.subCategoryID
+    LEFT JOIN user 
+    ON gallery.userID=user.userID 
     ORDER BY galleryDate DESC";
 
     $stmt = $db->query($sql);
@@ -29,6 +30,7 @@ function getImageById($id)
     global $db;
 
     $sql = "SELECT * FROM gallery 
+    INNER JOIN sub_category ON gallery.subCategoryID=sub_category.subCategoryID
     WHERE galleryID=:id";
 
     $stmt = $db->prepare($sql);
@@ -94,9 +96,17 @@ function insertImage($postArray, $files)
         $ok = false;
         $output .= "Title can not be empty!<br>";
     }
+    if (empty($postArray["subCategoryID"])) {
+        $ok = false;
+        $output .= 'Please choose Subcategory or <a href="' . APPURL . '/admin/categories?action=add&type=sub">create new </a><br>';
+    }
     if (empty($files['galleryImage']['name'])) {
         $ok = false;
         $output .= "Please choose Image!<br>";
+    }
+    if (empty($postArray['galleryDescription'])) {
+        $ok = false;
+        $output .= "Please insert a description!<br>";
     }
 
     // Handling files
@@ -121,20 +131,26 @@ function insertImage($postArray, $files)
     $sql = "INSERT INTO gallery
     	(
     		galleryTitle,
-    		galleryUserID,
-    		galleryImage
+            subCategoryID,
+    		userID,
+    		galleryImage,
+            galleryDescription
     	)
     	VALUES
     	(
     		:galleryTitle,
-    		:galleryUserID,
-    		:galleryImage
+    		:subCategoryID,
+    		:userID,
+    		:galleryImage,
+    		:galleryDescription
         )";
 
     $stmt = $db->prepare($sql);
     $stmt->bindParam(":galleryTitle", $postArray['galleryTitle']);
-    $stmt->bindParam(":galleryUserID", $postArray['galleryUserID']);
+    $stmt->bindParam(":subCategoryID", $postArray['subCategoryID']);
+    $stmt->bindParam(":userID", $postArray['userID']);
     $stmt->bindParam(":galleryImage", $file_name);
+    $stmt->bindParam(":galleryDescription", $postArray['galleryDescription']);
 
     if ($ok === true) {
         if (uploadImage($file_tmp, $file_name) && $stmt->execute()) {
@@ -224,13 +240,13 @@ function updateImage($postArray)
     // $sql = "INSERT INTO gallery
     // 	(
     // 		galleryTitle,
-    // 		galleryUserID,
+    // 		userID,
     // 		galleryImage
     // 	)
     // 	VALUES
     // 	(
     // 		:galleryTitle,
-    // 		:galleryUserID,
+    // 		:userID,
     // 		:galleryImage
     //     )";
 
@@ -238,7 +254,7 @@ function updateImage($postArray)
 
     // $stmt = $db->prepare($sql);
     // $stmt->bindParam(":galleryTitle", $postArray['galleryTitle']);
-    // $stmt->bindParam(":galleryUserID", $postArray['galleryUserID']);
+    // $stmt->bindParam(":userID", $postArray['userID']);
     // $stmt->bindParam(":galleryImage", $file_name);
 
     // if ($ok === true) {

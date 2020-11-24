@@ -15,7 +15,7 @@ if (!(isset($_GET['action']))) {
             <a href="?action=add" class="btn btn-success">Create New +</a>
         </div>
     </div>
-    <hr class="border-top">
+    <hr class="border-top mt-1">
     <div class="table-responsive-md">
         <table class="table table-striped">
             <thead class="bg-info">
@@ -24,6 +24,7 @@ if (!(isset($_GET['action']))) {
                     <th scope="col">Name</th>
                     <!-- <th scope="col">Benutzer</th> -->
                     <th scope="col">Category</th>
+                    <th scope="col">Subcategory</th>
                     <th scope="col">Language</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
@@ -42,6 +43,7 @@ if (!(isset($_GET['action']))) {
                             <th scope='row'>$counter</th>
                             <td>$row[pageName]</td>
                             <td>$row[categoryName]</td>
+                            <td>$row[subCategoryName]</td>
                             <td>$row[pageLanguage]</td>
                             <td>$pageStatus</td>
                             <td>
@@ -56,7 +58,7 @@ if (!(isset($_GET['action']))) {
                     }
                 } else {
                     echo "<tr>
-                        <td colspan='6'><h1 class='text-info text-center'>No Records</h1></td>
+                        <td colspan=7'><h1 class='text-info text-center'>No Records</h1></td>
                     </tr>";
                 }
                 ?>
