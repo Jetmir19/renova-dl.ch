@@ -15,8 +15,10 @@
                     <h1 class="home-h1-bold">Renova Sàrl</h1>
                     <hr class="bg-light">
                     <p class="home-h3-bold">Votre partenaire de confiance</p>
-                    <a href="<?php echo APPURL; ?>/about" class="btn btn-info mt-5">
-                        <span class="mehr-button">Lexo më tepër <i class="fas fa-caret-right" style="vertical-align: middle;"></i></span>
+                    <a href="<?php echo APPURL; ?>/about" class="btn btn-danger mt-5">
+                        <span class="mehr-button">Lexo më tepër
+                            <i class="fas fa-caret-right" style="vertical-align: middle;"></i>
+                        </span>
                     </a>
                     <!-- <div class="mt-4">
                         <a href="https://www.facebook.com/profile.php?id=100012314591998" target="_blank">
@@ -43,7 +45,7 @@
 
             Qëllimi ynë është shërbimi cilësor ndaj klientve dhe transporti i sigurt i mallrave, përsosmëria e këtij qëllimi është themeli mbi të cilin ne ekzistojmë.
         </p>
-        <a href="<?php echo APPURL; ?>/about" class="btn btn-info mt-3">
+        <a href="<?php echo APPURL; ?>/about" class="btn btn-danger mt-3">
             <span class="mehr-button">Lexo më tepër <i class="fas fa-caret-right" style="vertical-align: middle;"></i></span>
         </a>
     </div>

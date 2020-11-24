@@ -57,9 +57,9 @@
 								<i class="fas fa-phone-alt"></i>
 								<span class="right-line"></span>
 							</div>
-							<div class="header-info text-white">
+							<div class="header-info">
 								<div class="phone">+00-1202-235</div>
-								<div class="gmail text-muted">hmend@gmail.com</div>
+								<div class="gmail">hmend@gmail.com</div>
 							</div>
 						</div>
 						<div class="header-text d-flex align-items-center">
@@ -67,20 +67,20 @@
 								<i class="fas fa-home"></i>
 								<span class="right-line"></span>
 							</div>
-							<div class="header-info text-white">
+							<div class="header-info">
 								<div class="phone">2020 Chelopek Bervenice,</div>
-								<div class="gmail text-muted">Tetove,NM</div>
+								<div class="gmail">Tetove,NM</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="col-lg-2 col-sm-12 d-md-none d-sm-block d-lg-block align-self-center py-3">
-					<div class="d-flex justify-content-around justify-content-md-between">
-						<a href="#"><i class="fab fa-facebook-f text-white mr-2"></i></a>
-						<a href="#"><i class="fab fa-vimeo text-white mr-2"></i></a>
-						<a href="#"><i class="fab fa-tumblr text-white mr-2"></i></a>
-						<a href="#"><i class="fab fa-pinterest-p text-white mr-2"></i></a>
+					<div class="sc-icons d-flex justify-content-around justify-content-md-between">
+						<a href="#"><i class="fab fa-facebook-f mr-2"></i></a>
+						<a href="#"><i class="fab fa-vimeo mr-2"></i></a>
+						<a href="#"><i class="fab fa-tumblr mr-2"></i></a>
+						<a href="#"><i class="fab fa-pinterest-p mr-2"></i></a>
 					</div>
 				</div>
 			</div>
