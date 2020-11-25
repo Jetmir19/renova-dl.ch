@@ -23,6 +23,7 @@ require_once MODELS_PATH . "/admin/gallery.php";
 require_once MODELS_PATH . "/admin/pages.php";
 require_once MODELS_PATH . "/admin/users.php";
 
+// test per zhivinen :)
 
 ########### Routing START #############
 $func = 'index';
