@@ -70,4 +70,10 @@
 }
 .sc-icons i {
     color: #fff;
+    padding: 5px;
+}
+.sc-icons i:hover {
+    background-color: #fff;
+    color: #e04747;
+    border-radius: 3em;
 }

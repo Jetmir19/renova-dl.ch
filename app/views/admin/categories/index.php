@@ -7,6 +7,9 @@ require_once VIEWS_PATH . "/admin/includes/header.php";
 
 if (!isset($_GET['action'])) {
 ?>
+    <!-- Flash Messages from the Session -->
+    <?php getFlashMessage(); ?>
+
     <!-- Categories TABLE START -->
     <div class="row align-items-center pt-3">
         <div class="col text-left">
@@ -16,7 +19,13 @@ if (!isset($_GET['action'])) {
             <a href="?action=add" class="btn btn-success">Create New +</a>
         </div>
     </div>
+
     <hr class="border-top mt-1">
+
+    <div class="alert alert-info text-danger" role="alert">
+        <i class="fas fa-exclamation-circle"></i> Deleting a category deletes all the subcategories within the parent category!
+    </div>
+
     <div class="table-responsive-sm">
         <table class="table table-striped table-hover">
             <thead class="bg-info">
@@ -71,10 +80,12 @@ if (!isset($_GET['action'])) {
             <h4>Sub Categories</h4>
         </div>
         <div class="col text-right">
-            <a href="?action=add&type=sub" class="btn btn-success">Create New +</a>
+            <a href="categories_sub?action=add" class="btn btn-success">Create New +</a>
         </div>
     </div>
+
     <hr class="border-top mt-1">
+
     <div class="table-responsive-sm">
         <table class="table table-striped table-hover table-sm">
             <thead class="bg-info">
@@ -102,10 +113,10 @@ if (!isset($_GET['action'])) {
                             <td>" . $row['subCategoryDescription'] . "</td>
                             <td>" . $row['categoryName'] . "</td>
                             <td>
-                            <a class='btn btn-link' href='?action=edit&id=$row[categoryID]'>
+                            <a class='btn btn-link' href='categories_sub?action=edit&id=$row[subCategoryID]'>
                             <i class='far fa-edit'></i>
                             </a>
-                            <a class='btn btn-link' href='?action=delete&id=$row[categoryID]'>
+                            <a class='btn btn-link' href='categories_sub?action=delete&id=$row[subCategoryID]'>
                             <i class='far fa-trash-alt'></i>
                             </a>
                             </td>

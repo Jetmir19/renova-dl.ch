@@ -7,6 +7,9 @@ require_once VIEWS_PATH . "/admin/includes/header.php";
 
 if (!isset($_GET['action'])) {
 ?>
+    <!-- Flash Messages from the Session -->
+    <?php getFlashMessage(); ?>
+
     <div class="row align-items-center pt-3">
         <div class="col text-left">
             <h3>Gallery</h3>
@@ -17,6 +20,10 @@ if (!isset($_GET['action'])) {
     </div>
 
     <hr class="border-top mt-1">
+
+    <div class="alert alert-info text-danger" role="alert">
+        <i class="fas fa-exclamation-circle"></i> Gallery does not include edtiting Image, but creating new, show details and deleting Images is possible.
+    </div>
 
     <!-- TOTAL IMAGES -->
     <div class="table-responsive-sm">
@@ -42,7 +49,7 @@ if (!isset($_GET['action'])) {
     <hr class="border mt-0">
     <!-- ALL IMAGES -->
     <div class="table-responsive-sm">
-        <table class="table table-striped">
+        <table class="table table-striped table-hover">
             <thead class="bg-secondary text-white">
                 <tr>
                     <th scope="col">#</th>
@@ -58,12 +65,23 @@ if (!isset($_GET['action'])) {
                 <!-- MySQL START -->
                 <?php
                 $images = getImages();
+                // subCategory group - var
+                $subcategoryGroup = "";
                 $counter = 0;
                 if ($images) {
                     foreach ($images as $row) {
+                        // subCategory group - compare mysql row with the defined var
+                        if ($row["subCategoryName"] !== $subcategoryGroup) {
+                            // subCategory group - display subCatery Name
+                            echo "<tr class='table-active'>
+                            <td colspan='7' class='text-left font-weight-bold'>
+                            $row[subCategoryName] (" . getGallerySubCategoriesCountById($row['subCategoryID']) . ")
+                            </td>
+                            </tr>";
+                        }
                         $counter += 1;
                         echo "<tr>
-                            <th scope='row'>$counter</th>
+							<th scope='row'>$counter</th>
                             <td>
                             <img src='" . APPURL . "/public/uploads/gallery/" . $row['galleryImage'] . "' width='70px' height='80px'>
                             </td>
@@ -73,13 +91,15 @@ if (!isset($_GET['action'])) {
                             <td>$row[galleryDate]</td>
                             <td>
                             <a class='btn btn-link' href='?action=edit&id=$row[galleryID]'>
-                            <i class='far fa-edit'></i>
+                            <i class='far fa-eye'></i>
                             </a>
                             <a class='btn btn-link' href='?action=delete&id=$row[galleryID]'>
                             <i class='far fa-trash-alt'></i>
                             </a>
                             </td>
                         </tr>";
+                        // subCategory group - asign the row to the variable
+                        $subcategoryGroup = $row["subCategoryName"];
                     }
                 } else {
                     echo "<tr>

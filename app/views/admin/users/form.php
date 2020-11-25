@@ -6,7 +6,7 @@ if (isset($_GET['action'])) {
         <form id="formUser" class="form-user" action="<?php echo APPURL . "/admin/users/" . $_GET['action']; ?>" method="post" enctype="multipart/form-data">
 
             <!-- Flash Message -->
-            <div class="message"></div>
+            <div class="flash_message"></div>
 
             <?php
             ########################## ADD START ###########################
@@ -77,7 +77,7 @@ if (isset($_GET['action'])) {
         const frm = document.getElementById("formUser");
         frm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const message = document.querySelector(".message");
+            const message = document.querySelector(".flash_message");
             const formData = new FormData(frm);
             const xhr = new XMLHttpRequest();
             xhr.open('POST', frm.action, true);

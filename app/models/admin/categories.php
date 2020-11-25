@@ -87,6 +87,8 @@ function insertCategory($postArray)
     if ($ok === true) {
         if ($stmt->execute()) {
             $output .= "success";
+            // Save flash message in Session
+            $_SESSION['success_message'] = "The operation completed successfully.";
         } else {
             $output .= "Something went wrong with the Database! <br> Please try again later.";
         }
@@ -114,18 +116,23 @@ function updateCategory($postArray)
     }
 
     $sql = "UPDATE category 
-    SET categoryName=:categoryName, categoryDescription=:categoryDescription
+    SET categoryName=:categoryName, 
+    userID=:userID,
+    categoryDescription=:categoryDescription
     WHERE categoryID=:categoryID";
 
     $stmt = $db->prepare($sql);
 
     $stmt->bindParam(":categoryID", $postArray['categoryID']);
+    $stmt->bindParam(":userID", $postArray['userID']);
     $stmt->bindParam(":categoryName", $postArray['categoryName']);
     $stmt->bindParam(":categoryDescription", $postArray['categoryDescription']);
 
     if ($ok === true) {
         if ($stmt->execute()) {
             $output .= "success";
+            // Save flash message in Session
+            $_SESSION['success_message'] = "The operation completed successfully.";
         } else {
             $output .= "Something went wrong with the Database! <br> Please try again later.";
         }
@@ -150,6 +157,8 @@ function deleteCategory($categoryID)
 
     if ($stmt->execute()) {
         $output .= "success";
+        // Save flash message in Session
+        $_SESSION['success_message'] = "The operation completed successfully.";
     } else {
         $output .= "Something went wrong with the Database! <br> Please try again later.";
     }

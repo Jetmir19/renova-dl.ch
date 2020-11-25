@@ -16,7 +16,7 @@ html, body {
 
 /* All Links */
 a, a:focus, a:hover {
-  color: #000;
+  color: #e04747;
   transition: 0.4s;
 }
 
@@ -31,7 +31,7 @@ header {
 }
 
 .bg-image-full {
-  height: calc(100vh - 178px);
+  height: calc(100vh - 171px);
   background: url("../img/landing_2020.jpg");
   background-attachment: fixed;
   background-position: center;

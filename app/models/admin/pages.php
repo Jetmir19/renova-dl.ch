@@ -11,7 +11,7 @@ function getPages()
     LEFT JOIN (SELECT categoryID, categoryName FROM category) as c ON c.categoryID=sc.categoryID
     RIGHT JOIN (SELECT userID, userName FROM user) as u ON u.userID=p.userID
     WHERE p.pageID IS NOT NULL
-    ORDER BY pageName DESC";
+    ORDER BY pageName ASC";
 
     $stmt = $db->query($sql);
 
@@ -44,6 +44,30 @@ function getPageById($id)
 
     if ($stmt->rowCount() > 0) {
         return $data;
+    }
+
+    return false;
+}
+
+# ---------------------------------------------------
+function getPageNameCountByPageName($pageName)
+# ---------------------------------------------------
+{
+    global $db;
+
+    $sql = "SELECT COUNT(*) as num FROM pages 
+    WHERE pageName=:pageName";
+
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindParam(":pageName", $pageName);
+
+    $stmt->execute();
+
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($data) {
+        return $data['num'];
     }
 
     return false;
@@ -110,6 +134,8 @@ function insertPage($postArray)
     if ($ok === true) {
         if ($stmt->execute()) {
             $output .= "success";
+            // Save flash message in Session
+            $_SESSION['success_message'] = "The operation completed successfully.";
         } else {
             $output .= "Something went wrong with the Database! <br> Please try again later.";
         }
@@ -143,6 +169,7 @@ function updatePage($postArray)
     $sql = "UPDATE pages SET
                 pageName=:pageName, 
                 subCategoryID=:subCategoryID, 
+                userID=:userID, 
                 pageTitle=:pageTitle, 
                 pageLanguage=:pageLanguage, 
                 pageContent=:pageContent,
@@ -152,6 +179,7 @@ function updatePage($postArray)
     $stmt = $db->prepare($sql);
 
     $stmt->bindParam(":pageID", $postArray['pageID']);
+    $stmt->bindParam(":userID", $postArray['userID']);
     $stmt->bindParam(":pageName", $postArray['pageName']);
     $stmt->bindParam(":subCategoryID", $postArray['subCategoryID']);
     $stmt->bindParam(":pageTitle", $postArray['pageTitle']);
@@ -162,6 +190,8 @@ function updatePage($postArray)
     if ($ok === true) {
         if ($stmt->execute()) {
             $output .= "success";
+            // Save flash message in Session
+            $_SESSION['success_message'] = "The operation completed successfully.";
         } else {
             $output .= "Something went wrong with the Database! <br> Please try again later.";
         }
@@ -186,6 +216,8 @@ function deletePage($pageID)
 
     if ($stmt->execute()) {
         $output .= "success";
+        // Save flash message in Session
+        $_SESSION['success_message'] = "The operation completed successfully.";
     } else {
         $output .= "Something went wrong with the Database! <br> Please try again later.";
     }

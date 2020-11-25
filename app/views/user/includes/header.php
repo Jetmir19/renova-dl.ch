@@ -92,7 +92,7 @@
 	<div class="main">
 
 		<!-- Navigation -->
-		<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top py-3">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top py-2">
 			<div class="container">
 				<button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="icon-bar"></span>

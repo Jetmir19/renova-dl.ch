@@ -3,7 +3,7 @@
 if (isset($_GET['action'])) {
 ?>
     <div class="container bg-white p-3" id="catSuccess">
-        <form id="formCategory" class="form-category" action="<?php echo APPURL . "/admin/categories/" . $_GET['action']; ?>" method="post" enctype="multipart/form-data">
+        <form id="formCategory" class="form-category" action="<?php echo APPURL . "/admin/categories_sub/" . $_GET['action']; ?>" method="post" enctype="multipart/form-data">
 
             <!-- Flash Message -->
             <div class="flash_message"></div>
@@ -12,23 +12,35 @@ if (isset($_GET['action'])) {
             ########################## ADD START ###########################
             if ($_GET['action'] == 'add') {
             ?>
-                <h5>Add new Category</h5>
+                <h5>Add new Subcategory</h5>
                 <div class="form-group text-left">
-                    <label for="categoryName">Category Name</label>
-                    <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Name">
+                    <label for="subCategoryName">Subategory Name</label>
+                    <input type="text" class="form-control" id="subCategoryName" name="subCategoryName" placeholder="Name">
                 </div>
                 <div class="form-group text-left">
-                    <label for="categoryName">User</label>
+                    <label for="categoryID">Category</label>
+                    <select id="categoryID" name="categoryID" class="form-control">
+                        <option class="select_hide" disabled selected>Choose Category</option>
+                        <?php
+                        $categories = getCategories();
+                        foreach ($categories as $cat) {
+                            echo "<option value='$cat[categoryID]'>$cat[categoryName]</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group text-left">
+                    <label for="subCategoryName">User</label>
                     <input type="text" class="form-control" id="userName" name="userName" placeholder="Name" value="<?php echo $_SESSION['userName']; ?>" readonly>
                 </div>
                 <div class="form-group text-left">
-                    <label for="categoryDescription">Description</label>
-                    <textarea class="form-control" rows="5" id="categoryDescription" name="categoryDescription" placeholder="Description"></textarea>
+                    <label for="subCategoryDescription">Description</label>
+                    <textarea class="form-control" rows="5" id="subCategoryDescription" name="subCategoryDescription" placeholder="Description"></textarea>
                 </div>
                 <div class="form-group">
                     <!-- Input hidden below will be posted with the form -->
                     <input type="hidden" id="dbInsert" name="dbInsert" value="dbInsert">
-                    <input type="submit" id="btnAddCategory" name="btnAddCategory" class="btn btn-primary btn-lg btn-block" value="Save" />
+                    <input type="submit" id="btnAddSubCategory" name="btnAddSubCategory" class="btn btn-primary btn-lg btn-block" value="Save" />
                     <a href="<?php echo APPURL . "/admin/categories"; ?>" type="button" class="btn btn-secondary btn-lg btn-block">Cancel</a>
                 </div>
             <?php
@@ -37,23 +49,41 @@ if (isset($_GET['action'])) {
 
             ########################## EDIT START ##########################
             if ($_GET['action'] == 'edit') {
-                echo "<h5>Category edit</h5><span>ID: $_GET[id]</span>";
-                $row = getCategoryById($_GET['id']);
+                echo "<h5>Subcategory edit</h5><span>ID: $_GET[id]</span>";
+                $row = getSubCategoryById($_GET['id']);
+                $subCategoryName = $row["subCategoryName"];
                 $categoryName = $row["categoryName"];
-                $categoryDescription = $row["categoryDescription"];
+                $subCategoryDescription = $row["subCategoryDescription"];
                 $userName = $row["userName"];
             ?>
                 <div class="form-group text-left">
-                    <label for="categoryName">Category Name</label>
-                    <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Name" value="<?php echo $categoryName; ?>">
+                    <label for="subCategoryName">Subategory Name</label>
+                    <input type="text" class="form-control" id="subCategoryName" name="subCategoryName" placeholder="Name" value="<?php echo $subCategoryName; ?>">
                 </div>
                 <div class="form-group text-left">
-                    <label for="categoryName">User</label>
+                    <label for="categoryID">Category</label>
+                    <select id="categoryID" name="categoryID" class="form-control">
+                        <option class="select_hide" disabled selected>Choose Category</option>
+                        <?php
+                        $categories = getCategories();
+                        foreach ($categories as $cat) {
+                            if ($cat['categoryName'] == $categoryName) {
+                                $selected = "selected";
+                            } else {
+                                $selected = "";
+                            }
+                            echo "<option value='$cat[categoryID]' $selected>$cat[categoryName]</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group text-left">
+                    <label for="subCategoryName">User</label>
                     <input type="text" class="form-control" id="userName" name="userName" placeholder="Name" value="<?php echo $userName ?? $_SESSION['userName']; ?>" readonly>
                 </div>
                 <div class="form-group text-left">
-                    <label for="categoryDescription">Description</label>
-                    <textarea class="form-control" rows="5" id="categoryDescription" name="categoryDescription" placeholder="Description"><?php echo $categoryDescription; ?></textarea>
+                    <label for="subCategoryDescription">Description</label>
+                    <textarea class="form-control" rows="5" id="subCategoryDescription" name="subCategoryDescription" placeholder="Description"><?php echo $subCategoryDescription; ?></textarea>
                 </div>
                 <div class="form-group">
                     <!-- categoryID send -->
@@ -68,7 +98,7 @@ if (isset($_GET['action'])) {
             ########################## DELETE START ########################
             if ($_GET['action'] == 'delete') {
             ?>
-                <h5>Category delete</h5>
+                <h5>Subcategory delete</h5>
                 <h5 class="mb-5 mt-2">Are you sure?</h5>
                 <div class="form-group">
                     <!-- Delete Button and categoryID send -->

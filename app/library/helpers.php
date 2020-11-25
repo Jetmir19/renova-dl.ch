@@ -34,6 +34,29 @@ function dd($var)
     die;
 }
 
+/* Flash Messages */
+# -----------------------------------------------------------
+function getFlashMessage()
+# -----------------------------------------------------------
+{
+    // Success Messages
+    if (isset($_SESSION['success_message'])) {
+        echo '<div id="alert-success" class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                ' . $_SESSION['success_message'] . '
+        </div>';
+        unset($_SESSION['success_message']);
+    }
+    // Error Messages
+    if (isset($_SESSION['error_message'])) {
+        echo '<div id="alert-danger" class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                ' . $_SESSION['error_message'] . '
+        </div>';
+        unset($_SESSION['error_message']);
+    }
+}
+
 /* Function helper to send html email */
 # ----------------------------------------------------------------------------------------------------
 function sendEmail($From, $FromName, $Subject, $mailtext, $To, $CC = '', $BCC = '', $Attachments = '')

@@ -129,6 +129,8 @@ function updateUser($postArray)
     if ($ok === true) {
         if ($stmt->execute()) {
             $output .= "success";
+            // Save flash message in Session
+            $_SESSION['success_message'] = "The operation completed successfully.";
         } else {
             $output .= "Something went wrong with the Database! <br> Please try again later.";
         }

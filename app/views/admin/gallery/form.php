@@ -6,7 +6,7 @@ if (isset($_GET['action'])) {
         <form id="formGallery" class="form-gallery" action="<?php echo APPURL . "/admin/gallery/" . $_GET['action']; ?>" method="post" enctype="multipart/form-data">
 
             <!-- Flash Message -->
-            <div class="message"></div>
+            <div class="flash_message"></div>
 
             <?php
             ########################## ADD START ###########################
@@ -50,7 +50,7 @@ if (isset($_GET['action'])) {
 
             ########################## EDIT START ##########################
             if ($_GET['action'] == 'edit') {
-                echo "<h5>Image edit</h5><span>ID: $_GET[id]</span>";
+                echo "<h5>Image Details</h5><span>ID: $_GET[id]</span>";
                 $row = getImageById($_GET['id']);
                 $galleryTitle = $row['galleryTitle'];
                 $subCategoryName = $row["subCategoryName"];
@@ -59,12 +59,12 @@ if (isset($_GET['action'])) {
             ?>
                 <div class="form-group text-left">
                     <label for="galleryTitle">Title</label>
-                    <input type="text" class="form-control" id="galleryTitle" name="galleryTitle" placeholder="Title" value="<?php echo $galleryTitle; ?>">
+                    <input readonly type="text" class="form-control" id="galleryTitle" name="galleryTitle" placeholder="Title" value="<?php echo $galleryTitle; ?>">
                 </div>
                 <div class="form-group text-left">
                     <?php
                     echo "<label for='subCategoryID'>Subcategory</label>";
-                    echo "<select id='subCategoryID' name='subCategoryID' class='form-control'>";
+                    echo "<select readonly id='subCategoryID' name='subCategoryID' class='form-control'>";
                     echo "<option class='select_hide' disabled selected>Choose Subcategory</option>";
                     $subCategories = getSubCategories();
                     foreach ($subCategories as $cat) {
@@ -84,13 +84,13 @@ if (isset($_GET['action'])) {
                 </div>
                 <div class="form-group text-left">
                     <label for="galleryDescription">Description</label>
-                    <textarea class="form-control" rows="5" id="galleryDescription" name="galleryDescription" placeholder="Description"><?php echo $galleryDescription; ?></textarea>
+                    <textarea readonly class="form-control" rows="5" id="galleryDescription" name="galleryDescription" placeholder="Description"><?php echo $galleryDescription; ?></textarea>
                 </div>
                 <div class="form-group">
                     <!-- galleryID senden -->
                     <input type="hidden" id="dbEdit" name="dbEdit" value="<?php echo $_GET['id']; ?>">
-                    <input type="submit" id="btnEditGallery" name="btnEditGallery" class="btn btn-primary btn-lg btn-block" value="Save" />
-                    <a href="<?php echo APPURL . "/admin/gallery"; ?>" type="button" class="btn btn-secondary btn-lg btn-block">Cancel</a>
+                    <!-- <input type="submit" id="btnEditGallery" name="btnEditGallery" class="btn btn-primary btn-lg btn-block" value="Save" /> -->
+                    <a href="<?php echo APPURL . "/admin/gallery"; ?>" type="button" class="btn btn-secondary btn-lg btn-block">Back</a>
                 </div>
             <?php
             }
@@ -120,7 +120,7 @@ if (isset($_GET['action'])) {
         const frm = document.getElementById("formGallery");
         frm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const message = document.querySelector(".message");
+            const message = document.querySelector(".flash_message");
             const frmData = new FormData(frm);
             const xhr = new XMLHttpRequest();
             xhr.open('POST', frm.action, true);

@@ -29,7 +29,9 @@ function getSubCategoryById($id)
     global $db;
 
     $sql = "SELECT * FROM sub_category 
-    INNER JOIN user 
+    INNER JOIN category 
+    ON category.categoryID=sub_category.categoryID 
+    RIGHT JOIN user 
     ON sub_category.userID=user.userID 
     WHERE sub_category.subCategoryID=:id";
 
@@ -95,6 +97,8 @@ function insertSubCategory($postArray)
     if ($ok === true) {
         if ($stmt->execute()) {
             $output .= "success";
+            // Save flash message in Session
+            $_SESSION['success_message'] = "The operation completed successfully.";
         } else {
             $output .= "Something went wrong with the Database! <br> Please try again later.";
         }
@@ -122,18 +126,23 @@ function updateSubCategory($postArray)
     }
 
     $sql = "UPDATE sub_category 
-    SET subCategoryName=:subCategoryName, subCategoryDescription=:subCategoryDescription
+    SET categoryID=:categoryID,
+    subCategoryName=:subCategoryName,
+    subCategoryDescription=:subCategoryDescription
     WHERE subCategoryID=:subCategoryID";
 
     $stmt = $db->prepare($sql);
 
     $stmt->bindParam(":subCategoryID", $postArray['subCategoryID']);
+    $stmt->bindParam(":categoryID", $postArray['categoryID']);
     $stmt->bindParam(":subCategoryName", $postArray['subCategoryName']);
     $stmt->bindParam(":subCategoryDescription", $postArray['subCategoryDescription']);
 
     if ($ok === true) {
         if ($stmt->execute()) {
             $output .= "success";
+            // Save flash message in Session
+            $_SESSION['success_message'] = "The operation completed successfully.";
         } else {
             $output .= "Something went wrong with the Database! <br> Please try again later.";
         }
@@ -158,6 +167,8 @@ function deleteSubCategory($subCategoryID)
 
     if ($stmt->execute()) {
         $output .= "success";
+        // Save flash message in Session
+        $_SESSION['success_message'] = "The operation completed successfully.";
     } else {
         $output .= "Something went wrong with the Database! <br> Please try again later.";
     }

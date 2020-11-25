@@ -10,7 +10,7 @@ function getImages()
     INNER JOIN sub_category ON gallery.subCategoryID=sub_category.subCategoryID
     LEFT JOIN user 
     ON gallery.userID=user.userID 
-    ORDER BY galleryDate DESC";
+    ORDER BY subCategoryName DESC";
 
     $stmt = $db->query($sql);
 
@@ -62,6 +62,30 @@ function getImagesCount()
 
     if ($stmt->rowCount() > 0) {
         return $data;
+    }
+
+    return false;
+}
+
+# ---------------------------------------------------
+function getGallerySubCategoriesCountById($id)
+# ---------------------------------------------------
+{
+    global $db;
+
+    $sql = "SELECT COUNT(*) as num FROM gallery 
+    WHERE subCategoryID=:id";
+
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindParam(":id", $id);
+
+    $stmt->execute();
+
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($data) {
+        return $data['num'];
     }
 
     return false;
@@ -155,6 +179,8 @@ function insertImage($postArray, $files)
     if ($ok === true) {
         if (uploadImage($file_tmp, $file_name) && $stmt->execute()) {
             $output .= "success";
+            // Save flash message in Session
+            $_SESSION['success_message'] = "The operation completed successfully.";
         } else {
             $output .= "Something went wrong! <br>Please try again later.";
         }
@@ -186,6 +212,8 @@ function deleteImage($galleryID)
 
     if ($stmt->execute()) {
         $output .= "success";
+        // Save flash message in Session
+        $_SESSION['success_message'] = "The operation completed successfully.";
     } else {
         $output .= "Something went wrong with the Database! <br> Please try again later.";
     }
@@ -267,6 +295,8 @@ function updateImage($postArray)
 
     // if (uploadImage($file_tmp, $file_name) && $stmt->execute()) {
     //     $output .= "success";
+    // 	// Save flash message in Session
+    // $_SESSION['success_message'] = "The operation completed successfully.";
     // } else {
     //     $output .= "Something went wrong! <br> Please try again later.";
     // }

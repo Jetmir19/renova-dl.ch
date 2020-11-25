@@ -6,7 +6,7 @@ if (isset($_GET['action'])) {
         <form id="formPages" class="form-pages" action="<?php echo APPURL . "/admin/pages/" . $_GET['action']; ?>" method="post" enctype="multipart/form-data">
 
             <!-- Flash Message -->
-            <div class="message"></div>
+            <div class="flash_message"></div>
 
             <?php
             ########################## ADD START ###########################
@@ -25,9 +25,9 @@ if (isset($_GET['action'])) {
                     <label for='pageLanguage'>Language</label>
                     <select id='pageLanguage' name='pageLanguage' class='form-control'>
                         <option class='select_hide' disabled selected>Select Language</option>
-                        <option value='EN'>EN</option>
-                        <option value='DE'>DE</option>
+                        <!-- <option value='EN'>EN</option> -->
                         <option value='FR'>FR</option>
+                        <option value='DE'>DE</option>
                     </select>
                 </div>
                 <div class="form-group text-left">
@@ -153,7 +153,7 @@ if (isset($_GET['action'])) {
         const frm = document.getElementById("formPages");
         frm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const message = document.querySelector(".message");
+            const message = document.querySelector(".flash_message");
             const frmData = new FormData(frm);
             const xhr = new XMLHttpRequest();
             xhr.open('POST', frm.action, true);
